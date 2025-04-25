@@ -1,0 +1,20 @@
+Research and learning overview from other similar projects in the past years:
+
+FA 2024 - https://gitlab.engr.illinois.edu/ie421_high_frequency_trading_fall_2024/ie421_hft_fall_2024_group_10/group_10_project/-/blob/main/IE_421_Final_Report_-_Group_10.pdf?ref_type=heads
+- Hardware timestamping is critical: 
+Group 10 emphasizes that timestamping at the hardware level (PHY or MAC layer) significantly improves accuracy over software timestamping. This aligns with your use of HFT NICs, which are designed for such precision and help reduce jitter and latency introduced by higher-layer processing.
+
+- Raspberry Pis with GNSS receivers can serve as low-cost Grandmasters: 
+Their setup demonstrates that with a u-blox F9T GPS module and a Raspberry Pi 4 CM4 (which supports PPS and PTP), it's possible to build a highly accurate and cost-effective grandmaster clock—useful if your group explores portable or redundant systems.
+
+- Pulse-per-second (PPS) integration is key for precise alignment: 
+The PPS signal from the GNSS receiver provides a sharp edge for syncing to the exact start of a second, helping clients align more precisely. Your project can benefit from similar PPS usage for calibration and drift correction between PTP nodes.
+
+- System determinism matters: 
+Group 10 discusses the importance of using deterministic platforms (like embedded systems over general-purpose OSes) to reduce timing variance. This is relevant as you experiment with NICs and potentially Raspberry Pis or VMs—determinism will directly impact synchronization fidelity.
+
+- Measurement rate tuning improves performance:
+They found that increasing the GPS module’s measurement and baud rates improved time accuracy (tAcc) and reduced drift. This suggests that fine-tuning data flow rates in your client/server setup—whether via PPS or PTP message intervals—can yield better benchmarking results.
+
+- Satellite geometry and quality thresholds affect synchronization: 
+Filtering out weak satellite signals (via elevation and signal strength thresholds) improved accuracy in Group 10's tests. Even if you aren't using GNSS, this reinforces the importance of filtering poor-quality timing sources or noisy links in a PTP network.

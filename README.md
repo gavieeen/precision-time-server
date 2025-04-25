@@ -83,8 +83,25 @@ For people who want to make changes to your project, it's helpful to have some d
 
 You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Contributors
+
+# Gavin Ebenezer
+Hi! I’m a Computer Science major at the **University of Illinois at Urbana‐Champaign**, graduating in **May 2026**.  
+It’s fun to solve problems. That curiosity and persistence have fueled my love for Computer Science, especially in areas like **data structures and algorithms**. I enjoy the mathematical elegance of efficient problem-solving and the creativity involved in building solutions that scale.
+
+I’m especially drawn to the world of **software engineering and finance**, where precision and performance go hand in hand. It's no surprise that the HFT field, where complex algorithms drive trading decisions, inspires me.
+
+---
+💼 Availability
+- 🎓 **Graduation:** May 2026  
+- 💻 **Internships:** Open to **Fall 2025**, **Spring 2026**, and **Summer 2026** roles  
+- 🔁 **Full-time:** Open to **full-time positions starting Summer 2026**
+- 🌐 **Fields of Interest:** Software Engineering, Quantitative Finance, Trading Infrastructure, Backend Systems
+- ☁️ **Summer 2025:** I’ll be joining **Amazon** as a **Software Development Engineer Intern**
+
+---
+📸 Photo
+![Gavin Ebenezer Profile Pic](https://github.com/user-attachments/assets/ec9ef1a1-2302-4914-821e-d2f12d159168)
 
 ## License
 For open source projects, say how it is licensed.
