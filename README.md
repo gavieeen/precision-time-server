@@ -110,7 +110,9 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 
 ---
 📸 Photo
-![Gavin Ebenezer Profile Pic](https://imgur.com/a/MMMjYAu)
+<div align="center">
+  <img src="./GavinProfile.png" alt="Gavin Ebenezer Profile Pic" width="200"/>
+</div>
 
 # Aryan Sapre
 Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University of Illinois at Urbana-Champaign, graduating in May 2026. I'm passionate about pushing the bounds of technology and love working at the intersection of hardware and software. My specific interests lie in system programming, operating systems, and embedded systems, where I’m excited to explore how deep technical innovation can create real-world impact.
