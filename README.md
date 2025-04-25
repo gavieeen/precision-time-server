@@ -100,8 +100,17 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 - ☁️ **Summer 2025:** I’ll be joining **Amazon** as a **Software Development Engineer Intern**
 
 ---
+🔗 Links
+- [LinkedIn](https://www.linkedin.com/in/gavinebenezer/)
+- [GitHub](https://github.com/gavieeen/)
+- [GitLab](https://gitlab.engr.illinois.edu/gavinae2)
+- [Personal Website](https://gavieeen.github.io/)
+- [Personal Email](mailto:gavinebenezer@gmail.com)
+- [Student Email](mailto:gavinae2@illinois.edu)
+
+---
 📸 Photo
-![Gavin Ebenezer Profile Pic](https://github.com/user-attachments/assets/ec9ef1a1-2302-4914-821e-d2f12d159168)
+![Gavin Ebenezer Profile Pic](https://imgur.com/a/MMMjYAu)
 
 # Aryan Sapre
 Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University of Illinois at Urbana-Champaign, graduating in May 2026. I'm passionate about pushing the bounds of technology and love working at the intersection of hardware and software. My specific interests lie in system programming, operating systems, and embedded systems, where I’m excited to explore how deep technical innovation can create real-world impact.
