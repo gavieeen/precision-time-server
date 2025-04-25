@@ -106,6 +106,8 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 # Aryan Sapre
 Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University of Illinois at Urbana-Champaign, graduating in May 2026. I'm passionate about pushing the bounds of technology and love working at the intersection of hardware and software. My specific interests lie in system programming, operating systems, and embedded systems, where I’m excited to explore how deep technical innovation can create real-world impact.
 
+Linkedin: https://www.linkedin.com/in/aryansapre/
+Email: aryanns2@illinois.edu
 ---
 💼 Availability
 - 🎓 **Graduation:** May 2026  
