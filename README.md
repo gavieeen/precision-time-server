@@ -116,7 +116,9 @@ Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University o
 
 ---
 📸 Photo
-![Aryan Sapre](./AryanProfile.JPG)
+<div align="center">
+  <img src="./profile.jpg" alt="Aryan Sapre" width="200"/>
+</div>
 
 ## License
 For open source projects, say how it is licensed.
