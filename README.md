@@ -105,8 +105,8 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 - [GitHub](https://github.com/gavieeen/)
 - [GitLab](https://gitlab.engr.illinois.edu/gavinae2)
 - [Personal Website](https://gavieeen.github.io/)
-- [Personal Email]: gavinebenezer@gmail.com
-- [Student Email]: gavinae2@illinois.edu
+- Personal Email: gavinebenezer@gmail.com
+- Student Email: gavinae2@illinois.edu
 
 ---
 📸 Photo
