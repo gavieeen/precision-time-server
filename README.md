@@ -103,6 +103,21 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 📸 Photo
 ![Gavin Ebenezer Profile Pic](https://github.com/user-attachments/assets/ec9ef1a1-2302-4914-821e-d2f12d159168)
 
+# Aryan Sapre
+Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University of Illinois at Urbana-Champaign, graduating in May 2026. I'm passionate about pushing the bounds of technology and love working at the intersection of hardware and software. My specific interests lie in system programming, operating systems, and embedded systems, where I’m excited to explore how deep technical innovation can create real-world impact.
+
+---
+💼 Availability
+- 🎓 **Graduation:** May 2026  
+- 💻 **Internships:** Open to **Fall 2025**, **Spring 2026**, and **Summer 2026** roles  
+- 🔁 **Full-time:** Open to **full-time positions starting Summer 2026**
+- 🌐 **Fields of Interest:** Software Engineering, Quantitative Finance, Low Latency Software Development, Embedded Systems, Compilers, AI
+- ☁️ **Summer 2025:** I’ll be joining **Capital One** as a **Software Engineer Intern**
+
+---
+📸 Photo
+![Aryan Sapre](./AryanProfile.JPG)
+
 ## License
 For open source projects, say how it is licensed.
 
