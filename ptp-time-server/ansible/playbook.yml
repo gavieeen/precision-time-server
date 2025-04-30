@@ -1,0 +1,25 @@
+- hosts: time_servers
+  become: true
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - chrony
+          - linuxptp
+          - gpsd
+          - gpsd-clients
+        update_cache: yes
+
+    - name: Enable and start chronyd
+      systemd:
+        name: chronyd
+        state: started
+        enabled: true
+
+    - name: Check PTP4L installation
+      command: which ptp4l
+      register: ptp4l_path
+
+    - name: Print ptp4l path
+      debug:
+        msg: "{{ ptp4l_path.stdout }}"
