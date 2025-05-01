@@ -1,0 +1,12 @@
+---
+# roles/time_server/tasks/main.yml
+#basically add in code for everydays worth of progress as a .yml and u add the working code onto main to help track progress
+
+- name: Day 1 ▶ Base install & GPSD/Chrony setup
+  import_tasks: day1.yml
+
+- name: Day 2 ▶ Enable PPS overlay & oscillator test
+  import_tasks: day2.yml
+
+- name: Day 3 ▶ Deploy Chrony & PTP4L configuration
+  import_tasks: day3.yml
