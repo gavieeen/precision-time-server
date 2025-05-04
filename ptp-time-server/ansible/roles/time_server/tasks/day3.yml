@@ -1,1 +1,86 @@
-# TODO : Deploy Chrony & PTP4L configuration
+---
+# Day 3: Deploy Chrony & PTP4L configuration
+
+- name: Ensure required packages are installed
+  apt:
+    name:
+      - chrony
+      - linuxptp
+      - gpsd
+      - gpsd-clients
+      - pps-tools
+    state: present
+    update_cache: yes
+  become: yes
+
+- name: Configure GPSD
+  template:
+    src: gpsd.j2
+    dest: /etc/default/gpsd
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: restart gpsd
+
+- name: Configure Chrony
+  template:
+    src: chrony.conf.j2
+    dest: /etc/chrony/chrony.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: restart chrony
+
+- name: Configure PTP4L
+  template:
+    src: ptp4l.conf.j2
+    dest: /etc/linuxptp/ptp4l.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: restart ptp4l
+
+- name: Configure PHC2SYS
+  template:
+    src: phc2sys.conf.j2
+    dest: /etc/linuxptp/phc2sys.conf
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: restart phc2sys
+
+- name: Create systemd service for PTP4L
+  template:
+    src: ptp4l.service.j2
+    dest: /etc/systemd/system/ptp4l.service
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: reload systemd
+
+- name: Create systemd service for PHC2SYS
+  template:
+    src: phc2sys.service.j2
+    dest: /etc/systemd/system/phc2sys.service
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: reload systemd
+
+- name: Enable and start services
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  with_items:
+    - gpsd
+    - chrony
+    - ptp4l
+    - phc2sys
+  become: yes
