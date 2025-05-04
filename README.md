@@ -95,7 +95,7 @@ Email: aryanns2@illinois.edu
 </div>
 
 
-
+-Advised by Professor Lariviere
 
 
 
@@ -123,6 +123,7 @@ Email: aryanns2@illinois.edu
 
 # Final Report
 (Insert Final Report)
+
 
 
 
