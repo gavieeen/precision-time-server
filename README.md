@@ -95,7 +95,14 @@ Email: aryanns2@illinois.edu
 </div>
 
 
--Advised by Professor Lariviere
+
+
+
+
+
+
+
+**-Advised by Professor Lariviere**
 
 
 
