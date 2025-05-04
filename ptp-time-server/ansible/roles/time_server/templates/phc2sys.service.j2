@@ -1,0 +1,13 @@
+[Unit]
+Description=Synchronize system clock to PTP hardware clock
+After=network.target ptp4l.service
+Wants=ptp4l.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/phc2sys -s eth0 -c CLOCK_REALTIME -w -m
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
