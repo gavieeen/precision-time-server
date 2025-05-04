@@ -1,0 +1,31 @@
+---
+# Handlers for time_server role
+
+- name: restart gpsd
+  systemd:
+    name: gpsd
+    state: restarted
+  become: yes
+
+- name: restart chrony
+  systemd:
+    name: chrony
+    state: restarted
+  become: yes
+
+- name: restart ptp4l
+  systemd:
+    name: ptp4l
+    state: restarted
+  become: yes
+
+- name: restart phc2sys
+  systemd:
+    name: phc2sys
+    state: restarted
+  become: yes
+
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+  become: yes
