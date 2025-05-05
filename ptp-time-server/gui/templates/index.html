@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PTP Time Server Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .card {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            font-weight: bold;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-active {
+            background-color: #28a745;
+        }
+        .status-inactive {
+            background-color: #dc3545;
+        }
+        .status-unknown {
+            background-color: #ffc107;
+        }
+        .time-display {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .dashboard-title {
+            margin-bottom: 30px;
+        }
+        .metric-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .metric-label {
+            color: #6c757d;
+        }
+        .system-info {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center dashboard-title">
+            <i class="bi bi-clock"></i> PTP Time Server Dashboard
+        </h1>
+        
+        <div class="time-display" id="current-time">
+            --:--:--
+        </div>
+        
+        <div class="row">
+            <!-- GPS Status Card -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <i class="bi bi-geo-alt"></i> GPS Status
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <span class="status-indicator" id="gps-status-indicator"></span>
+                                    <span id="gps-status">Unknown</span>
+                                </p>
+                                <p class="metric-label">Satellites:</p>
+                                <p class="metric-value" id="gps-satellites">0</p>
+                                <p class="metric-label">Fix:</p>
+                                <p class="metric-value" id="gps-fix">No</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="metric-label">Latitude:</p>
+                                <p class="metric-value" id="gps-latitude">0.0000°</p>
+                                <p class="metric-label">Longitude:</p>
+                                <p class="metric-value" id="gps-longitude">0.0000°</p>
+                                <p class="metric-label">Altitude:</p>
+                                <p class="metric-value" id="gps-altitude">0.0 m</p>
+                            </div>
+                        </div>
+                        <p class="metric-label">GPS Time:</p>
+                        <p class="metric-value" id="gps-time">--</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PPS Status Card -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <i class="bi bi-lightning"></i> PPS Status
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <span class="status-indicator" id="pps-status-indicator"></span>
+                                    <span id="pps-status">Unknown</span>
+                                </p>
+                                <p class="metric-label">Device:</p>
+                                <p class="metric-value">/dev/pps0</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="metric-label">Offset:</p>
+                                <p class="metric-value" id="pps-offset">0.000 ms</p>
+                                <p class="metric-label">Jitter:</p>
+                                <p class="metric-value" id="pps-jitter">0.000 ms</p>
+                            </div>
+                        </div>
+                        <div class="progress mt-3" style="height: 25px;">
+                            <div class="progress-bar bg-success" id="pps-quality" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- PTP Status Card -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <i class="bi bi-clock-history"></i> PTP Status
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <span class="status-indicator" id="ptp-status-indicator"></span>
+                                    <span id="ptp-status">Unknown</span>
+                                </p>
+                                <p class="metric-label">Master:</p>
+                                <p class="metric-value" id="ptp-master">--</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="metric-label">Offset:</p>
+                                <p class="metric-value" id="ptp-offset">0.000 μs</p>
+                                <p class="metric-label">Delay:</p>
+                                <p class="metric-value" id="ptp-delay">0.000 μs</p>
+                            </div>
+                        </div>
+                        <div class="progress mt-3" style="height: 25px;">
+                            <div class="progress-bar bg-info" id="ptp-quality" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NTP Status Card -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        <i class="bi bi-clock"></i> NTP Status (Chrony)
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <span class="status-indicator" id="ntp-status-indicator"></span>
+                                    <span id="ntp-status">Unknown</span>
+                                </p>
+                                <p class="metric-label">Stratum:</p>
+                                <p class="metric-value" id="ntp-stratum">0</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="metric-label">Offset:</p>
+                                <p class="metric-value" id="ntp-offset">0.000 ms</p>
+                                <p class="metric-label">Jitter:</p>
+                                <p class="metric-value" id="ntp-jitter">0.000 ms</p>
+                            </div>
+                        </div>
+                        <div class="progress mt-3" style="height: 25px;">
+                            <div class="progress-bar bg-warning" id="ntp-quality" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Status Card -->
+        <div class="card">
+            <div class="card-header bg-secondary text-white">
+                <i class="bi bi-pc-display"></i> System Status
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="system-info">
+                            <strong>Hostname:</strong> <span id="system-hostname">--</span>
+                        </p>
+                        <p class="system-info">
+                            <strong>IP Address:</strong> <span id="system-ip">--</span>
+                        </p>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="system-info">
+                            <strong>Uptime:</strong> <span id="system-uptime">--</span>
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="metric-label">CPU Usage:</p>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-primary" id="system-cpu" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="metric-label">Memory Usage:</p>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-primary" id="system-memory" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="metric-label">Disk Usage:</p>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-primary" id="system-disk" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Connect to Socket.IO server
+            const socket = io();
+            
+            // Update clock
+            function updateClock() {
+                const now = new Date();
+                const timeString = now.toTimeString().split(' ')[0];
+                document.getElementById('current-time').textContent = timeString;
+            }
+            
+            // Format uptime
+            function formatUptime(seconds) {
+                const days = Math.floor(seconds / 86400);
+                const hours = Math.floor((seconds % 86400) / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                
+                let result = '';
+                if (days > 0) result += `${days}d `;
+                if (hours > 0 || days > 0) result += `${hours}h `;
+                result += `${minutes}m`;
+                
+                return result;
+            }
+            
+            // Update status indicators
+            function updateStatusIndicator(elementId, status) {
+                const indicator = document.getElementById(elementId);
+                
+                indicator.classList.remove('status-active', 'status-inactive', 'status-unknown');
+                
+                if (status === 'Active') {
+                    indicator.classList.add('status-active');
+                } else if (status === 'Inactive' || status === 'Not Found' || status === 'Error') {
+                    indicator.classList.add('status-inactive');
+                } else {
+                    indicator.classList.add('status-unknown');
+                }
+            }
+            
+            // Calculate quality percentage based on jitter
+            function calculateQuality(jitter, threshold) {
+                if (jitter === 0) return 0;
+                const quality = Math.max(0, Math.min(100, 100 - (jitter / threshold * 100)));
+                return Math.round(quality);
+            }
+            
+            // Handle status updates from server
+            socket.on('status_update', function(data) {
+                // Update GPS status
+                document.getElementById('gps-status').textContent = data.gps.status;
+                document.getElementById('gps-satellites').textContent = data.gps.satellites;
+                document.getElementById('gps-fix').textContent = data.gps.fix ? 'Yes' : 'No';
+                document.getElementById('gps-latitude').textContent = data.gps.latitude.toFixed(6) + '°';
+                document.getElementById('gps-longitude').textContent = data.gps.longitude.toFixed(6) + '°';
+                document.getElementById('gps-altitude').textContent = data.gps.altitude.toFixed(1) + ' m';
+                document.getElementById('gps-time').textContent = data.gps.time;
+                updateStatusIndicator('gps-status-indicator', data.gps.status);
+                
+                // Update PPS status
+                document.getElementById('pps-status').textContent = data.pps.status;
+                document.getElementById('pps-offset').textContent = (data.pps.offset * 1000).toFixed(3) + ' ms';
+                document.getElementById('pps-jitter').textContent = (data.pps.jitter * 1000).toFixed(3) + ' ms';
+                updateStatusIndicator('pps-status-indicator', data.pps.status);
+                
+                // Update PPS quality indicator
+                const ppsQuality = calculateQuality(data.pps.jitter, 0.001);
+                const ppsQualityBar = document.getElementById('pps-quality');
+                ppsQualityBar.style.width = ppsQuality + '%';
+                ppsQualityBar.textContent = ppsQuality + '%';
+                ppsQualityBar.setAttribute('aria-valuenow', ppsQuality);
+                
+                // Update PTP status
+                document.getElementById('ptp-status').textContent = data.ptp.status;
+                document.getElementById('ptp-master').textContent = data.ptp.master || '--';
+                document.getElementById('ptp-offset').textContent = (data.ptp.offset * 1000000).toFixed(3) + ' μs';
+                document.getElementById('ptp-delay').textContent = (data.ptp.delay * 1000000).toFixed(3) + ' μs';
+                updateStatusIndicator('ptp-status-indicator', data.ptp.status);
+                
+                // Update PTP quality indicator
+                const ptpQuality = calculateQuality(Math.abs(data.ptp.offset), 0.0001);
+                const ptpQualityBar = document.getElementById('ptp-quality');
+                ptpQualityBar.style.width = ptpQuality + '%';
+                ptpQualityBar.textContent = ptpQuality + '%';
+                ptpQualityBar.setAttribute('aria-valuenow', ptpQuality);
+                
+                // Update NTP status
+                document.getElementById('ntp-status').textContent = data.ntp.status;
+                document.getElementById('ntp-stratum').textContent = data.ntp.stratum;
+                document.getElementById('ntp-offset').textContent = (data.ntp.offset * 1000).toFixed(3) + ' ms';
+                document.getElementById('ntp-jitter').textContent = (data.ntp.jitter * 1000).toFixed(3) + ' ms';
+                updateStatusIndicator('ntp-status-indicator', data.ntp.status);
+                
+                // Update NTP quality indicator
+                const ntpQuality = calculateQuality(data.ntp.jitter, 0.01);
+                const ntpQualityBar = document.getElementById('ntp-quality');
+                ntpQualityBar.style.width = ntpQuality + '%';
+                ntpQualityBar.textContent = ntpQuality + '%';
+                ntpQualityBar.setAttribute('aria-valuenow', ntpQuality);
+                
+                // Update system status
+                document.getElementById('system-hostname').textContent = data.system.hostname;
+                document.getElementById('system-ip').textContent = data.system.ip;
+                document.getElementById('system-uptime').textContent = formatUptime(data.system.uptime);
+                
+                const cpuBar = document.getElementById('system-cpu');
+                cpuBar.style.width = data.system.cpu_usage + '%';
+                cpuBar.textContent = Math.round(data.system.cpu_usage) + '%';
+                cpuBar.setAttribute('aria-valuenow', data.system.cpu_usage);
+                
+                const memoryBar = document.getElementById('system-memory');
+                memoryBar.style.width = data.system.memory_usage + '%';
+                memoryBar.textContent = Math.round(data.system.memory_usage) + '%';
+                memoryBar.setAttribute('aria-valuenow', data.system.memory_usage);
+                
+                const diskBar = document.getElementById('system-disk');
+                diskBar.style.width = data.system.disk_usage + '%';
+                diskBar.textContent = Math.round(data.system.disk_usage) + '%';
+                diskBar.setAttribute('aria-valuenow', data.system.disk_usage);
+            });
+            
+            // Update clock every second
+            setInterval(updateClock, 1000);
+            updateClock();
+        });
+    </script>
+</body>
+</html>

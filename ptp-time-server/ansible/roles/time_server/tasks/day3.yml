@@ -9,6 +9,8 @@
       - gpsd
       - gpsd-clients
       - pps-tools
+      - python3-pip
+      - python3-dev
     state: present
     update_cache: yes
   become: yes
@@ -83,4 +85,63 @@
     - chrony
     - ptp4l
     - phc2sys
+  become: yes
+
+# GUI Deployment
+- name: Create GUI directory
+  file:
+    path: /opt/ptp-time-server-gui
+    state: directory
+    mode: '0755'
+  become: yes
+
+- name: Copy GUI app.py file
+  copy:
+    src: files/gui/app.py
+    dest: /opt/ptp-time-server-gui/app.py
+    mode: '0755'
+  become: yes
+
+- name: Copy GUI requirements.txt file
+  copy:
+    src: files/gui/requirements.txt
+    dest: /opt/ptp-time-server-gui/requirements.txt
+    mode: '0644'
+  become: yes
+
+- name: Create templates directory for GUI
+  file:
+    path: /opt/ptp-time-server-gui/templates
+    state: directory
+    mode: '0755'
+  become: yes
+
+- name: Copy GUI template files
+  copy:
+    src: files/gui/templates/index.html
+    dest: /opt/ptp-time-server-gui/templates/index.html
+    mode: '0644'
+  become: yes
+
+- name: Install GUI Python dependencies
+  pip:
+    requirements: /opt/ptp-time-server-gui/requirements.txt
+    state: present
+  become: yes
+
+- name: Create systemd service for GUI
+  template:
+    src: ptp-gui.service.j2
+    dest: /etc/systemd/system/ptp-gui.service
+    owner: root
+    group: root
+    mode: '0644'
+  become: yes
+  notify: reload systemd
+
+- name: Enable and start GUI service
+  systemd:
+    name: ptp-gui
+    enabled: yes
+    state: started
   become: yes
