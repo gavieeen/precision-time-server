@@ -29,6 +29,13 @@
         regexp: '(rootwait\\s*fixrtc)(?!.*isolcpus)'
         replace: '\1 isolcpus=1 nohz_full=1 rcu_nocbs=1'
 
+    - name: Add /dev/pps0 to gpsd default config
+      lineinfile:
+        path: /etc/default/gpsd
+        regexp: '^DEVICES='
+        line: 'DEVICES="/dev/ttyACM0 /dev/pps0"'
+        create: yes
+
     - name: Stop chrony service before applying override
       systemd:
         name: chrony
@@ -40,7 +47,7 @@
         state: directory
         mode: '0755'
 
-    - name: Pin chronyd to CPU {{ chronyd_cpu }} using taskset override
+    - name: Create systemd override to pin chronyd to CPU {{ chronyd_cpu }}
       copy:
         dest: /etc/systemd/system/chrony.service.d/override.conf
         content: |
