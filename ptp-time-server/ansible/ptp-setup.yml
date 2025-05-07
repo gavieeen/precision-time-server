@@ -1,0 +1,71 @@
+---
+- name: Setup Raspberry Pi CM4 for High-Precision PPS + Chrony
+  hosts: ptp_pi
+  become: true
+  vars:
+    chronyd_cpu: 1
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - chrony
+          - gpsd
+          - gpsd-clients
+          - pps-tools
+          - linux-modules-extra-raspi
+        state: present
+        update_cache: true
+
+    - name: Enable PPS via GPIO18 in config.txt
+      lineinfile:
+        path: /boot/firmware/config.txt
+        line: "dtoverlay=pps-gpio,gpiopin=18"
+        insertafter: EOF
+
+    - name: Ensure CPU isolation in cmdline.txt
+      replace:
+        path: /boot/firmware/cmdline.txt
+        regexp: '(rootwait\\s*fixrtc)(?!.*isolcpus)'
+        replace: '\1 isolcpus=1 nohz_full=1 rcu_nocbs=1'
+
+    - name: Stop chrony service before applying override
+      systemd:
+        name: chrony
+        state: stopped
+
+    - name: Create systemd override directory for chrony
+      file:
+        path: /etc/systemd/system/chrony.service.d
+        state: directory
+        mode: '0755'
+
+    - name: Pin chronyd to CPU {{ chronyd_cpu }} using taskset override
+      copy:
+        dest: /etc/systemd/system/chrony.service.d/override.conf
+        content: |
+          [Service]
+          ExecStart=
+          ExecStart=/usr/bin/taskset -c {{ chronyd_cpu }} /usr/sbin/chronyd -F -1
+
+    - name: Reload systemd configuration
+      command: systemctl daemon-reexec
+
+    - name: Reload systemd unit files
+      systemd:
+        daemon_reload: true
+
+    - name: Enable and restart chrony
+      systemd:
+        name: chrony
+        enabled: true
+        state: restarted
+
+    - name: Verify chronyd is running on the correct CPU
+      shell: "ps -eo pid,cmd,psr | grep chronyd"
+      register: chrony_affinity
+      changed_when: false
+
+    - name: Show chronyd CPU affinity
+      debug:
+        var: chrony_affinity.stdout
