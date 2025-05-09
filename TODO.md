@@ -22,12 +22,14 @@
 
 - Use isolcpus and set CPU affinity (manual scheduling)
 -------------------------------------- (Aryan)
+
+
 3. Tickless Kernel 
 
 - Enable and verify tickless kernel (CONFIG_NO_HZ_FULL or similar)
 
-^ going to take too long and need to recompile kernal
-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+^ ***going to take too long and need to recompile kernal***
+
 
 
 4. Assign Chrony/PTP Threads
@@ -36,7 +38,9 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 - Assign critical thread(s) to dedicated core(s)
 
+Chetan: Pinned the chronyd process and its threads to CPU core 2 using a systemd override with taskset, ensuring consistent core assignment for timing accuracy across reboots.
 
+-------------------------------------- (Chetan)
 **PPS, GPS, and Clock Configuration**
 
 
@@ -48,6 +52,8 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 - Reset to known good config on Pi reboot (coordinating with Group 30)
 
+^ ***not working properly will get back to it***
+
 6. Baud Rate and Logging
 
 - Increase USB baud rate to avoid overflow
@@ -55,6 +61,10 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 - Use gpspipe -w for logging
 
 - Instrument once-per-second logging (CPU temps, jitter, etc.)
+
+Chetan: Logging works realtime, will ask where and how much logging to save and what to use for but gpspipe -w works
+
+-------------------------------------- (Chetan)
 
 7. Use ubxtool to:
 

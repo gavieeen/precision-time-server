@@ -3,7 +3,7 @@
   hosts: ptp_pi
   become: true
   vars:
-    chronyd_cpu: 1
+    chronyd_cpu: 2
 
   tasks:
     - name: Install required packages
@@ -27,7 +27,7 @@
       replace:
         path: /boot/firmware/cmdline.txt
         regexp: '(rootwait\\s*fixrtc)(?!.*isolcpus)'
-        replace: '\1 isolcpus=1 nohz_full=1 rcu_nocbs=1'
+        replace: '\\1 isolcpus=2 nohz_full=2 rcu_nocbs=2'
 
     - name: Add /dev/pps0 to gpsd default config
       lineinfile:
@@ -53,7 +53,7 @@
         content: |
           [Service]
           ExecStart=
-          ExecStart=/usr/bin/taskset -c {{ chronyd_cpu }} /usr/sbin/chronyd -F -1
+          ExecStart=/usr/bin/taskset -c {{ chronyd_cpu }} /usr/sbin/chronyd -F 1
 
     - name: Reload systemd configuration
       command: systemctl daemon-reexec
@@ -76,3 +76,44 @@
     - name: Show chronyd CPU affinity
       debug:
         var: chrony_affinity.stdout
+
+    - name: Ensure gpsd is running for logging
+      systemd:
+        name: gpsd.socket
+        enabled: true
+        state: started
+
+    - name: Create GPS logging directory
+      file:
+        path: /var/log/gps
+        state: directory
+        mode: '0755'
+
+    - name: Create gpspipe logging script
+      copy:
+        dest: /usr/local/bin/log_gps.sh
+        mode: '0755'
+        content: |
+          #!/bin/bash
+          gpspipe -w >> /var/log/gps/gps_log_$(date +%F).json
+
+    - name: Create systemd service to run gpspipe logger
+      copy:
+        dest: /etc/systemd/system/gps-logger.service
+        content: |
+          [Unit]
+          Description=Log GPS data with gpspipe
+          After=gpsd.service
+
+          [Service]
+          ExecStart=/usr/local/bin/log_gps.sh
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target
+
+    - name: Enable gps-logger service
+      systemd:
+        name: gps-logger.service
+        enabled: true
+        state: started
