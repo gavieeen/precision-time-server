@@ -21,10 +21,14 @@
     - PTP/chronyd
 
 - Use isolcpus and set CPU affinity (manual scheduling)
-
-3. Tickless Kernel
+-------------------------------------- (Aryan)
+3. Tickless Kernel 
 
 - Enable and verify tickless kernel (CONFIG_NO_HZ_FULL or similar)
+
+^ going to take too long and need to recompile kernal
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 
 4. Assign Chrony/PTP Threads
 
