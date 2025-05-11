@@ -72,12 +72,15 @@ Chetan: Logging works realtime, will ask where and how much logging to save and 
 
 - Log signal strength, satellite usage, PPS jitter, etc.
 
+Chetan: Did not finish, ubxtool not available so need to import/write python script
+
 8. Log and Store GPS Performance Data
 
 - Write satellite info and timing quality into a database
 
 - Possibly reuse prior teams’ CesiumJS GUI for visualization
 
+Chetan: Did not finish, need to setup database, and data importing
 
 **PTP and Client-Server Timing**
 
@@ -85,6 +88,8 @@ Chetan: Logging works realtime, will ask where and how much logging to save and 
 
 - Ensure the PTP daemon uses PPS GPIO or MAC pin input
 
+Chetan: Already uses PPS GPIO based on chrony.cofig file
+-------------------------------------- (Chetan) 
 10. Compare PPS vs PTP Outputs
 
 - Measure distribution between RPi PTP client's MAC time and PRS10 PPS
