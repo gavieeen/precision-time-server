@@ -76,3 +76,8 @@
     - name: Show chronyd CPU affinity
       debug:
         var: chrony_affinity.stdout
+    - name: Disable irqbalance
+      systemd:
+        name: irqbalance
+        enabled: false
+        state: stopped
