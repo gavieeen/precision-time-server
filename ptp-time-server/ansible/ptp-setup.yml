@@ -117,3 +117,15 @@
         name: gps-logger.service
         enabled: true
         state: started
+    - name: Ensure rsync is installed for GPS log transfer
+      apt:
+        name: rsync
+        state: present
+        update_cache: false
+
+    - name: (Reminder) Show command to download GPS logs via rsync
+      debug:
+        msg: >
+          To download GPS logs to your local machine, run:
+          rsync -avz pi@<raspberry_pi_ip>:/var/log/gps/ ./gps-logs/
+
