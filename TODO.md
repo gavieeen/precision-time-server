@@ -126,6 +126,8 @@ Chetan: Already uses PPS GPIO based on chrony.cofig file
 14. Almanac Saving
 
 - Learn how to periodically save/load GPS almanac to improve lock speed
+-------------------------------------- (Gavin)
+bash script to save almanac every 12 hours with gpspipe working
 
 15. Test SNMP + IPMI Compatibility
 
