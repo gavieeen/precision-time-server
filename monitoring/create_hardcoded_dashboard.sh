@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Create a dashboard with hardcoded time ranges and simplified queries
+cat > hardcoded_dashboard.json << 'EOF'
+{
+  "dashboard": {
+    "id": null,
+    "uid": null,
+    "title": "Hardcoded GPS Dashboard",
+    "tags": ["gps"],
+    "timezone": "browser",
+    "schemaVersion": 38,
+    "version": 0,
+    "refresh": "5s",
+    "time": {
+      "from": "2025-05-09T00:00:00.000Z",
+      "to": "2025-05-13T23:59:59.000Z"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "type": "stat",
+        "title": "Satellites Visible",
+        "datasource": {
+          "type": "influxdb",
+          "uid": null
+        },
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": ["lastNotNull"],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": null
+            },
+            "query": "from(bucket: \"gps_data\")\n  |> range(start: 2025-05-09T00:00:00Z, stop: 2025-05-13T23:59:59Z)\n  |> filter(fn: (r) => r._measurement == \"satellite_info\")\n  |> filter(fn: (r) => r._field == \"satellites_visible\")\n  |> last()",
+            "refId": "A"
+          }
+        ]
+      }
+    ]
+  },
+  "overwrite": true,
+  "message": "Hardcoded dashboard created via API",
+  "folderId": 0
+}
+EOF
+
+# Import the dashboard via API
+curl -X POST -H "Content-Type: application/json" -d @hardcoded_dashboard.json http://admin:admin@localhost:3001/api/dashboards/db
+
+echo -e "\n\nDashboard created! Access it at: http://localhost:3001/dashboards"
