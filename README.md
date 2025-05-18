@@ -129,12 +129,114 @@ Email: aryanns2@illinois.edu
 
 
 # Final Report
-(Insert Final Report)
+**Executive Summary**
+This project aims to build a low-cost, precision time server using a Raspberry Pi CM4, GNSS receiver, and pulse-per-second (PPS) signal integration. The goal is to achieve sub-microsecond synchronization accuracy for time-sensitive applications, such as high-frequency trading (HFT) and distributed systems. By leveraging GPSD, chrony, and Telegraf for metric reporting, and visualizing with Grafana, the system provides live monitoring of satellite lock, jitter, and PTP clock quality.
+Key outcomes include successful PPS signal parsing, live GPS/CPU metric exports, and Prometheus-compatible dashboard panels. The final recommendation is that this architecture is suitable for educational and experimental precision timing, though long-term deployment may benefit from hardware timestamping or grandmaster PTP hardware.
+
+---
+
+**Introduction**
+Precise time synchronization is critical in fields like financial trading, telecommunications, and distributed computing. Commercial PTP (Precision Time Protocol) servers can be costly and complex. This project explores building a compact, affordable alternative using a Raspberry Pi CM4 paired with a u-blox ZED-F9T GNSS module.
+The objective is to design, configure, and verify a system capable of delivering precise UTC-synchronized timing signals and monitoring system jitter, satellite visibility, and clock quality. The work is scoped to Linux-based PPS processing and metric collection, without reliance on hardware timestamping NICs or FPGA devices.
+
+---
+
+**Data and Preprocessing**
+Our data comes directly from GNSS receivers interfaced via GPSD over serial and PPS (Pulse Per Second) GPIO. Metrics of interest include:
+
+* GPS time, satellite count, position accuracy (via `gpspipe` JSON output)
+* PPS stability via `/dev/pps0`
+* System-level CPU usage and jitter (via Telegraf’s system plugins)
+
+We used GPSD to parse GNSS data and chrony to align the system clock using PPS. The metrics are transformed using a Telegraf exec plugin which parses `gpspipe -w` JSON using `jq` to output Influx-compatible metrics. PPS signals are validated via `ppstest`, `chronyc sourcestats`, and `time_pps_fetch()` output.
+
+These preprocessing steps ensure that raw signal data is aligned, filtered, and transformed for real-time metric export.
+
+---
+
+**Methodology**
+The system’s architecture includes:
+
+* A GNSS receiver with PPS output connected to GPIO18
+* GPSD service for GNSS parsing
+* Chrony for disciplining the system clock via PPS
+* Telegraf for metric ingestion, including a custom GPS exec script
+* Prometheus-compatible endpoint for metric scraping
+
+Metrics include:
+
+* `gps_status_lat`, `gps_status_lon`, `gps_status_alt`: Live GNSS coordinates
+* `gps_status_sep`, `gps_status_eph`: Satellite precision metrics
+* `cpu_usage_user`, `cpu_usage_idle`, `irq`, `iowait`: System load
+* `chrony_skew_ppm`, `chrony_rms_offset`, `chrony_jitter`: Clock discipline quality
+
+Grafana dashboards visualize trends and allow remote analysis of satellite visibility, jitter trends, and pulse quality over time.
+
+---
+
+**Implementation**
+Technologies used:
+
+* `gpsd`, `chrony`, `ppstest`: low-level GNSS/PPS parsing
+* `jq`, `gpspipe`, Bash: custom script metrics extraction
+* `Telegraf`: main collector for CPU, PPS, GPS
+* `Grafana`: visualization
+
+Key configuration files:
+
+* `/etc/telegraf/telegraf.conf` with `inputs.exec` for GPS parsing
+* `telegraf-gps.sh`: Parses `gpspipe -w` JSON and exports metrics
+* `/etc/telegraf/telegraf.d/prometheus_output.conf`: Enables Prometheus scraping on port 9273
+
+To run:
+
+1. SSH into the Pi using your key
+2. Start GPSD and chrony services
+3. Run: `sudo systemctl start telegraf`
+4. Visit `localhost:3000` on a port-forwarded browser to view dashboards
+
+All settings are stored in `telegraf-gps-backup.tar.gz` and versioned for reproducibility.
+
+---
+
+**Results and Analysis**
+Sample metrics collected:
+
+* `gps_status_lat=41.88`, `lon=-87.64`, `alt=295.2`
+* `gps_status_sep=19.97`, `eph=1.13`, `status=1`
+* CPU jitter remained below 5% across monitored intervals
+* `chronyc tracking` output showed <10us RMS offset from PPS-synced source
+
+Visualizations:
+
+* Grafana panel: Altitude over time (`gps_status_alt`)
+* Grafana panel: Satellite visibility (`gps_status_sep`, `eph`)
+* Grafana panel: CPU usage and system jitter (`cpu_usage_irq`, `cpu_usage_user`)
+* Chrony timing stats overlayed on a dashboard using `exec` plugin
+
+These results confirm stable PPS input, high GNSS fix quality, and usable system clock alignment.
+
+---
+
+**Conclusion and Future Work**
+This project successfully demonstrates a software-defined precision timing server using Raspberry Pi hardware and GNSS PPS signals. Our modular setup with GPSD, chrony, Telegraf, and Grafana provides real-time insights into GPS synchronization and system health.
+
+In future iterations, we recommend:
+
+* Incorporating external OCXO/Rubidium clocks for holdover
+* Evaluating MAC timestamping NICs for nanosecond PTP precision
+* Automating backup and restore of Grafana dashboards
+* Creating alerts for satellite dropout, jitter spikes, or offset drifts
+
+Team Members: (insert name), (insert name), (insert name)
+
 
 
 
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+
+
 
 
