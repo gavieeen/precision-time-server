@@ -228,7 +228,7 @@ In future iterations, we recommend:
 * Automating backup and restore of Grafana dashboards
 * Creating alerts for satellite dropout, jitter spikes, or offset drifts
 
-Team Members: (insert name), (insert name), (insert name)
+Team Members: (Chetan Boddeti), (Aryan Sapre), (Gavin Ebenezer)
 
 
 
