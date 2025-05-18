@@ -1,5 +1,4 @@
-# **group_07_project: 
-PTP/PPS TimeSync Grandmaster using Raspberry Pi-Based System in Distributed Systems and HFT**
+#**PTP/PPS TimeSync Grandmaster using Raspberry Pi-Based System in Distributed Systems and HFT**
 
 # Objective
 
