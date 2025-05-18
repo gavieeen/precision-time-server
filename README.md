@@ -1,5 +1,5 @@
 # **PTP/PPS TimeSync Grandmaster using Raspberry Pi-Based System in Distributed Systems and HFT**
-
+[[_TOC_]]
 # Objective
 
 Our goal is to investigate the feasibility of using the Raspberry Pi CM4 as a GPS Grandmaster Clock. We aim to achieve microsecond-accurate time synchronization using a u-blox GPS module with PPS capabilities. This enables cost-effective timekeeping for applications such as high-frequency trading (HFT), distributed systems, and scientific instrumentation.
@@ -23,7 +23,7 @@ It’s fun to solve problems. That curiosity and persistence have fueled my love
 I’m especially drawn to the world of **software engineering and finance**, where precision and performance go hand in hand. It's no surprise that the HFT field, where complex algorithms drive trading decisions, inspires me.
 
 ---
-💼 Availability
+💼 **Availability**
 - 🎓 **Graduation:** May 2026  
 - 💻 **Internships:** Open to **Fall 2025**, **Spring 2026**, and **Summer 2026** roles  
 - 🔁 **Full-time:** Open to **full-time positions starting Summer 2026**
@@ -31,7 +31,7 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 - ☁️ **Summer 2025:** I’ll be joining **Amazon** as a **Software Development Engineer Intern**
 
 ---
-🔗 Links
+🔗 **Links**
 - [LinkedIn](https://www.linkedin.com/in/gavinebenezer/)
 - [GitHub](https://github.com/gavieeen/)
 - [GitLab](https://gitlab.engr.illinois.edu/gavinae2)
@@ -40,7 +40,7 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 - Student Email: gavinae2@illinois.edu
 
 ---
-📸 Photo
+📸 **Photo**
 <div align="center">
   <img src="./GavinProfile.png" alt="Gavin Ebenezer Profile Pic" width="200"/>
 </div>
@@ -53,7 +53,7 @@ I am passionate about working on cutting-edge technology that can help us push t
 I am also draw into the intersection of Finance and Software engineering and how we can use technology to further our understanding of money as we know it.
 
 ---
-💼 Availability
+💼 **Availability**
 - 🎓 **Graduation:** May 2026  
 - 💻 **Internships:** Open to **Fall 2025**, **Spring 2026**, and **Summer 2026** roles  
 - 🔁 **Full-time:** Open to **full-time positions starting Summer 2026**
@@ -61,7 +61,7 @@ I am also draw into the intersection of Finance and Software engineering and how
 - ☁️ **Summer 2025:** I’ll be joining **AMD** as a **AI Modeling and Software Automation Intern**
 
 ---
-🔗 Links
+🔗 **Links**
 - [LinkedIn](https://www.linkedin.com/in/chetan-boddeti/)
 - [GitHub](https://github.com/Chetanb123/)
 - [Personal Website](https://chetanb123.github.io/)
@@ -69,7 +69,7 @@ I am also draw into the intersection of Finance and Software engineering and how
 - Student Email: boddeti2@illinois.edu
 
 ---
-📸 Photo
+📸 **Photo**
 <div align="center">
   <img src="./ChetanProfile.jpeg" alt="Chetan Boddeti Profile Pic" width="200"/>
 </div>
@@ -78,10 +78,8 @@ I am also draw into the intersection of Finance and Software engineering and how
 ## Aryan Sapre
 Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University of Illinois at Urbana-Champaign, graduating in May 2026. I'm passionate about pushing the bounds of technology and love working at the intersection of hardware and software. My specific interests lie in system programming, operating systems, and embedded systems, where I’m excited to explore how deep technical innovation can create real-world impact.
 
-Linkedin: https://www.linkedin.com/in/aryansapre/
-Email: aryanns2@illinois.edu
 ---
-💼 Availability
+💼 **Availability**
 - 🎓 **Graduation:** May 2026  
 - 💻 **Internships:** Open to **Fall 2025**, **Spring 2026**, and **Summer 2026** roles  
 - 🔁 **Full-time:** Open to **full-time positions starting Summer 2026**
@@ -89,21 +87,19 @@ Email: aryanns2@illinois.edu
 - ☁️ **Summer 2025:** I’ll be joining **Capital One** as a **Software Engineer Intern**
 
 ---
-📸 Photo
+🔗 **Links**
+- [LinkedIn](https://www.linkedin.com/in/aryansapre/)
+- Student Email: aryanns2@illinois.edu
+
+---
+📸 **Photo**
 <div align="center">
   <img src="./AryanProfile.JPG" alt="Aryan Sapre" width="200"/>
 </div>
 
 
 
-
-
-
-
-
-
-**-Advised by Professor Lariviere**
-
+**- Advised by Professor Lariviere**
 
 
 ## Hardware
@@ -132,8 +128,6 @@ Email: aryanns2@illinois.edu
 **Executive Summary:**
 This project aims to build a low-cost, precision time server using a Raspberry Pi CM4, GNSS receiver, and pulse-per-second (PPS) signal integration. The goal is to achieve sub-microsecond synchronization accuracy for time-sensitive applications, such as high-frequency trading (HFT) and distributed systems. By leveraging GPSD, chrony, and Telegraf for metric reporting, and visualizing with Grafana, the system provides live monitoring of satellite lock, jitter, and PTP clock quality.
 Key outcomes include successful PPS signal parsing, live GPS/CPU metric exports, and Prometheus-compatible dashboard panels. The final recommendation is that this architecture is suitable for educational and experimental precision timing, though long-term deployment may benefit from hardware timestamping or grandmaster PTP hardware.
-
-[[_TOC_]]
 
 ## 1. Introduction
 In the world’s most competitive financial markets, *every millisecond is a race*. Traders and algorithms compete in what is known as the “race to zero”—the relentless quest to reduce trading latency to as close to zero as technology allows. In high-frequency trading (HFT), where thousands of orders are executed in the blink of an eye, victory belongs to those who can act fastest and most precisely. Here, time is not just money—it is the very fabric of fairness, opportunity, and success. Yet, in this environment, speed alone is not enough; it is the precision of time synchronization that determines who truly wins the race.
@@ -169,7 +163,7 @@ For this project, PTP is the protocol of choice, as it provides the level of pre
 ### 2.4 Time Standards and GNSS
 The global standard for civil timekeeping is Coordinated Universal Time (UTC), which incorporates leap seconds to remain aligned with Earth’s rotation. The Global Navigation Satellite System (GNSS), and specifically the Global Positioning System (GPS), is a practical means of distributing precise time worldwide. Each GPS satellite is equipped with multiple atomic clocks, broadcasting time signals that allow receivers to synchronize with high accuracy. This makes GNSS an ideal reference for building cost-effective, precise time servers.
 
-2.5 Oscillators in Timekeeping
+### 2.5 Oscillators in Timekeeping
 Oscillators generate the stable frequencies required for timekeeping. The most relevant types for this project are:
 
 - **Quartz Oscillator**: Used in most consumer and embedded devices, including the Raspberry Pi. Quartz oscillators are stable and cost-effective but can be affected by temperature and environmental changes.
