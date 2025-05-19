@@ -227,6 +227,50 @@ The direction (azimuth) and angle above the horizon (elevation) of each satellit
 
 This table shows satellite visibility, signal strength, and which satellites are used for the current GNSS fix—key quality indicators for timing and positioning.
 
+
+#### 2.7.4. Lock Status (Fix/No Fix)
+Indicates whether the receiver has a valid position and time solution.
+- **No Fix**: Not enough satellites or poor signal.
+- **2D Fix**: Position fixed in latitude/longitude.
+- **3D Fix**: Position fixed in latitude, longitude, and altitude.
+- **Time Fix**: Sufficient for accurate timing, even if position is ambiguous.
+- **Importance**: A 3D or time fix is required for high-precision timing.
+#### 2.7.5. PPS Offset and Jitter
+The time difference (offset) between the Pulse Per Second (PPS) signal and the system clock, and the variation (jitter) of this offset.
+- **Importance**: Low offset and jitter values indicate tight synchronization and stable timing performance.
+- **How to View**: Tools like chronyc sourcestats, ppstest, or time_pps_fetch().
+
+Example of `chronyc -n sources` output:
+
+```
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+#- GPS                          0   4   377    14    +63ms[  +63ms] +/-  251ms
+#* PPS                          0   4   377    12   -148ns[ -305ns] +/-  126ns
+^- <b>185.125.190.57</b>        2  10   377   811  -1634us[-1558us] +/-   49ms
+^- <b>91.189.91.157</b>         2  10   377   696  -2207us[-2142us] +/-   38ms
+^- <b>185.125.190.58</b>        2  10   377   825  -1334us[-1258us] +/-   49ms
+^- <b>185.125.190.56</b>        2  10   377   824  -2045us[-1968us] +/-   48ms
+^- <b>5.78.62.36</b>            4  10   377   620   -387us[ -330us] +/-   49ms
+^- <b>69.172.133.130</b>        2  10   377    42  -3009us[-3008us] +/-   20ms
+^- <b>96.231.54.40</b>          1  10   377   310  -2554us[-2534us] +/-   17ms
+^- <b>23.142.248.8</b>          2  10   377   517  -3047us[-3001us] +/-   33ms
+
+```
+
+#### 2.7.6. Temperature
+Some GNSS modules and oscillators report temperature.
+- **Importance**: Temperature fluctuations can affect oscillator stability and timing accuracy, especially in quartz-based systems.
+- **Monitoring**: Useful for diagnosing drift or instability issues.
+#### 2.7.7. CGPS Output
+The cgps tool provides a live summary of GNSS status, including:
+- **Fix status**
+- **Satellite count and signal strengths**
+- **Latitude, longitude, altitude**
+- **Time and date**
+- **Speed, heading (if moving)**
+- **Importance**: Offers a comprehensive, real-time view of receiver health and timing quality.
+
 **Example `cgps -s` Output Breakdown**
 
 
@@ -296,49 +340,6 @@ cgps: WARNING gpsd server release 3.22, expec┌──────────�
 - **Used/Seen**: Top bar shows how many satellites are visible and how many are used for the fix.
 - **Signal Quality**: SNR > 30 dB-Hz is generally good.
 - **Errors/DOP**: Lower DOP values mean better geometry and accuracy.
-
-#### 2.7.4. Lock Status (Fix/No Fix)
-Indicates whether the receiver has a valid position and time solution.
-- **No Fix**: Not enough satellites or poor signal.
-- **2D Fix**: Position fixed in latitude/longitude.
-- **3D Fix**: Position fixed in latitude, longitude, and altitude.
-- **Time Fix**: Sufficient for accurate timing, even if position is ambiguous.
-- **Importance**: A 3D or time fix is required for high-precision timing.
-#### 2.7.5. PPS Offset and Jitter
-The time difference (offset) between the Pulse Per Second (PPS) signal and the system clock, and the variation (jitter) of this offset.
-- **Importance**: Low offset and jitter values indicate tight synchronization and stable timing performance.
-- **How to View**: Tools like chronyc sourcestats, ppstest, or time_pps_fetch().
-#### 2.7.5. PPS Offset and Jitter
-Example of `chronyc -n sources` output:
-
-```
-MS Name/IP address         Stratum Poll Reach LastRx Last sample
-===============================================================================
-#- GPS                          0   4   377    14    +63ms[  +63ms] +/-  251ms
-#* PPS                          0   4   377    12   -148ns[ -305ns] +/-  126ns
-^- <b>185.125.190.57</b>        2  10   377   811  -1634us[-1558us] +/-   49ms
-^- <b>91.189.91.157</b>         2  10   377   696  -2207us[-2142us] +/-   38ms
-^- <b>185.125.190.58</b>        2  10   377   825  -1334us[-1258us] +/-   49ms
-^- <b>185.125.190.56</b>        2  10   377   824  -2045us[-1968us] +/-   48ms
-^- <b>5.78.62.36</b>            4  10   377   620   -387us[ -330us] +/-   49ms
-^- <b>69.172.133.130</b>        2  10   377    42  -3009us[-3008us] +/-   20ms
-^- <b>96.231.54.40</b>          1  10   377   310  -2554us[-2534us] +/-   17ms
-^- <b>23.142.248.8</b>          2  10   377   517  -3047us[-3001us] +/-   33ms
-
-```
-
-#### 2.7.6. Temperature
-Some GNSS modules and oscillators report temperature.
-- **Importance**: Temperature fluctuations can affect oscillator stability and timing accuracy, especially in quartz-based systems.
-- **Monitoring**: Useful for diagnosing drift or instability issues.
-#### 2.7.7. CGPS Output
-The cgps tool provides a live summary of GNSS status, including:
-- **Fix status**
-- **Satellite count and signal strengths**
-- **Latitude, longitude, altitude**
-- **Time and date**
-- **Speed, heading (if moving)**
-- **Importance**: Offers a comprehensive, real-time view of receiver health and timing quality.
 #### 2.7.8. Other Offsets and Delays
 - **System Offset**: The difference between the system clock and the reference GNSS time.
 - **Root Delay/Dispersion**: Network or hardware delays in the time synchronization path, reported by NTP/PTP/chrony.
