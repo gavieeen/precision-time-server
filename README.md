@@ -315,10 +315,11 @@ In future iterations, we recommend:
 ### 9.1. Aryan Sapre - Project Lead
 
 1. What did you specifically do individually for this project?
--Set up GPSD with a u-blox GNSS receiver, enabled PPS via GPIO18, and configured Chrony to use both GPS and PPS sources
--Implemented CPU isolation and IRQ steering to dedicate cores for time-sensitive interrupts and services, including assigning chronyd to its own core
--Contributed to the Ansible playbook to automate the system setup, ensuring reproducibility and idempotence
--Tested PPS signals and time synchronization accuracy using tools like ppstest, chronyc, and gpsmon, and collaborated closely with my team and professor to debug and improve the system
+
+- Set up GPSD with a u-blox GNSS receiver, enabled PPS via GPIO18, and configured Chrony to use both GPS and PPS sources
+- Implemented CPU isolation and IRQ steering to dedicate cores for time-sensitive interrupts and services, including assigning chronyd to its own core
+- Contributed to the Ansible playbook to automate the system setup, ensuring reproducibility and idempotence
+- Tested PPS signals and time synchronization accuracy using tools like ppstest, chronyc, and gpsmon, and collaborated closely with my team and professor to debug and improve the system
 
 2. What did you learn as a result of doing your project?
 
@@ -351,6 +352,13 @@ In future iterations, we recommend:
 ### 9.3. Gavin Ebenezer
 
 1. What did you specifically do individually for this project?
+
+- Researched and learned methods to periodically save and load the GPS almanac to improve GNSS lock speed after power cycles.
+- Developed a bash script utilizing gpspipe to automatically save the GPS almanac data every 12 hours.
+- Integrated the script with the system to ensure regular backups of the almanac, contributing to faster satellite acquisition.
+- Created an interactive Jupyter notebook (ipynb) for visualizing GPS and timing data.
+- Contributed to the README and wrote the introduction and background sections of the final project report, providing context for the technical work.
+- Maintained the project’s .gitignore and general repository hygiene.
 
 2. What did you learn as a result of doing your project?
 
