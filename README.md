@@ -327,6 +327,14 @@ In future iterations, we recommend:
 ### 9.2. Chetan Boddeti
 
 1. What did you specifically do individually for this project?
+- Configured a Precision Time Server on Raspberry Pi (CM4)
+→ Set up GPS module and PPS (Pulse Per Second) input via /dev/ttyACM0 and /dev/pps0. Installed and configured gpsd, verified PPS via ppstest, synchronized system time using chrony, and confirmed high-precision GNSS lock. Also routed PPS interrupts to CPU0 and optimized kernel IRQ behavior for timing stability.
+
+- Built a Real-Time Metrics Pipeline with Telegraf + Prometheus + Grafana
+→ Installed Telegraf and created custom executable plugins (telegraf-gps.sh, telegraf-gps-jitter.sh) to collect GNSS-derived metrics (e.g., lat/lon, altitude, jitter). Configured Telegraf to expose metrics over port 9273 via [[outputs.prometheus_client]], and verified via curl. Port-forwarded Grafana to local browser using SSH.
+
+- Visualized GPS and Timing Data in Grafana Dashboards
+→ Connected Prometheus as a data source, added dashboard panels using gps_status_alt, gps_status_lat, gps_jitter_epx, and node_timex_pps_jitter_seconds to show live positioning and timing stability. Ensured dashboards refresh in real time, and exported the config for teammates to reuse via a .tar.gz bundle.
 
 2. What did you learn as a result of doing your project?
 
@@ -349,6 +357,8 @@ In future iterations, we recommend:
 5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
 
 
+
+![alt text](image.png)
 
 Team Members: (Chetan Boddeti), (Aryan Sapre), (Gavin Ebenezer)
 
