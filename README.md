@@ -312,9 +312,13 @@ In future iterations, we recommend:
 ## 8. References 
 
 ## 9. Reflections
-### 9.1. Aryan Sapre
+### 9.1. Aryan Sapre - Project Lead
 
 1. What did you specifically do individually for this project?
+-Set up GPSD with a u-blox GNSS receiver, enabled PPS via GPIO18, and configured Chrony to use both GPS and PPS sources
+-Implemented CPU isolation and IRQ steering to dedicate cores for time-sensitive interrupts and services, including assigning chronyd to its own core
+-Contributed to the Ansible playbook to automate the system setup, ensuring reproducibility and idempotence
+-Tested PPS signals and time synchronization accuracy using tools like ppstest, chronyc, and gpsmon, and collaborated closely with my team and professor to debug and improve the system
 
 2. What did you learn as a result of doing your project?
 
