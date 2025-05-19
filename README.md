@@ -194,6 +194,109 @@ Signal-to-noise ratio (SNR) for each satellite, usually measured in decibels (dB
 The direction (azimuth) and angle above the horizon (elevation) of each satellite.
 - **Importance**: Satellites high in the sky (high elevation) are less likely to be obstructed and provide better signals. Distribution across the sky (not all in one direction) improves accuracy.
 - **How to View**: Tools like cgps, gpsmon, or gpspipe can display satellite maps and details.
+**Example gpsmon Output** (`/dev/ttyACM0`):
+
+```
+/dev/ttyACM0                  u-blox>
+┌──────────────────────────┐
+│Ch PRN  Az  El S/N FLAG U │
+│ 0   3 213  21  37 191f Y │
+│ 1   4 290  76  34 191f Y │
+│ 2   7 279  12  43 191f Y │
+│ 3   8 177   8  43 1917   │
+│ 4   9 310  40  31 191f Y │
+│ 5  16  84  79  10 191c Y │
+│ 6  26  54  49   0 1910   │
+│ 7  27 146  29  35 191f Y │
+│ 8  28  90   6  17 1213   │
+│ 9  29  27   2   0 1211   │
+│10  31  81  28   9 1914   │
+│11 212  61  67   8 1913   │
+│12 213 136  21  25 191c Y │
+│13 217 309  49  29 199f Y │
+│14 218 145  74  31 191f Y │
+│15 235  46  15   0 1211   │
+└────── NAV-SAT ───────────┘
+```
+- **Ch**: Channel number
+- **PRN**: Satellite identifier
+- **Az**: Azimuth (degrees)
+- **El**: Elevation (degrees)
+- **S/N**: Signal-to-noise ratio (dB-Hz)
+- **FLAG/U**: Status flags, “Y” indicates used in solution
+
+This table shows satellite visibility, signal strength, and which satellites are used for the current GNSS fix—key quality indicators for timing and positioning.
+
+**Example `cgps -s` Output Breakdown**
+
+
+```
+cgps: WARNING gpsd server release 3.22, expec┌────────────────Seen 32/Used 16──┐──────────────────────────────────┐
+│ Time         2025-05-19T08:06:28.000Z (18)││GNSS  S PRN  Elev  Azim   SNR Use│
+│ Latitude          41.88065360 N           ││GP  4     4  71.0 197.0  41.0  Y │
+│ Longitude         87.64398250 W           ││GP  7     7  27.0 292.0  41.0  Y │
+│ Alt (HAE, MSL)     265.012,    298.801  m ││GP  8     8  28.0 171.0  45.0  Y │
+│ Speed              0.00              km/h ││GP  9     9  58.0 293.0  41.0  Y │
+│ Track (true, var)     246.9,  -4.1    deg ││GP 27    27  47.0 127.0  20.0  Y │
+│ Climb             -1.02             m/min ││GL  1    65  62.0 245.0  44.0  Y │
+│ Status          3D FIX (7 secs)           ││GL  2    66  35.0 322.0  33.0  Y │
+│ Long Err  (XDOP, EPX)   0.68, +/- 10.2 m  ││GL  8    72  23.0 179.0  44.0  Y │
+│ Lat Err   (YDOP, EPY)   0.68, +/- 10.2 m  ││GL 11    75  62.0   3.0  10.0  Y │
+│ Alt Err   (VDOP, EPV)   1.24, +/-  1.6 m  ││GA  7   307  64.0 295.0  36.0  Y │
+│ 2D Err    (HDOP, CEP)   1.07, +/-  1.4 m  ││GA  8   308  55.0 159.0  41.0  Y │
+│ 3D Err    (PDOP, SEP)   1.64, +/- 23.9 m  ││GA 27   327  19.0 230.0  36.0  Y │
+│ Time Err  (TDOP)        1.03              ││GA 30   330  71.0 229.0  40.0  Y │
+│ Geo Err   (GDOP)        1.94              ││BD 21   421  45.0 283.0  39.0  Y │
+│ Speed Err (EPS)            +/-  0.0 km/h  ││BD 22   422  39.0 208.0  47.0  Y │
+│ Track Err (EPD)         n/a               ││BD 29   429  14.0 143.0  30.0  Y │
+│ Time offset             0.073295879     s ││GP  3     3   3.0 203.0  45.0  N │
+│ Grid Square             EN61ev21ri        ││GP 16    16  59.0  50.0   0.0  N │
+│ ECEF X, VX     195515.170  m    0.000  m/s││GP 18    18   0.0  53.0   0.0  N │
+│ ECEF Y, VY   -4752035.650  m    0.000  m/s││GP 20    20   1.0 332.0  21.0  N │
+│ ECEF Z, VZ    4235920.350  m    0.000  m/s││GP 26    26  29.0  56.0   0.0  N │
+│                                           ││GP 31    31  13.0  96.0   9.0  N │
+└───────────────────────────────────────────┘└More...──────────────────────────┘
+```
+
+- **Time**: UTC time of the GPS fix.
+- **Latitude/Longitude**: Current position.
+- **Alt (HAE, MSL)**: Height above ellipsoid and mean sea level.
+- **Speed/Track/Climb**: Movement information.
+- **Status**: Fix status (e.g., 3D FIX, 2D FIX, NO FIX).
+- **DOP/Err**: Dilution of Precision and error estimates (lower is better).
+- **Time offset**: Offset between system and GPS time.
+- **Grid Square**: Maidenhead grid locator.
+- **ECEF X/Y/Z, VX/VY/VZ**: Earth-centered, earth-fixed coordinates and velocities.
+
+**Satellite Table (Right Side)**
+
+- **GNSS**: GNSS type (GP=GPS, GL=GLONASS, GA=Galileo, BD=BeiDou, etc.)
+- **S**: Satellite system code.
+- **PRN**: Satellite PRN number.
+- **Elev**: Elevation angle above horizon (degrees).
+- **Azim**: Azimuth (degrees from North).
+- **SNR**: Signal-to-noise ratio (dB-Hz).
+- **Use**: 'Y' if used in current position fix, 'N' if not.
+
+**Example Satellite Row**
+| GNSS | S | PRN | Elev | Azim | SNR | Use |
+|------|---|-----|------|------|-----|-----|
+| GP | 4 | 4 | 71.0 | 197.0| 41.0| Y |
+
+- **GP**: GPS
+- **4**: Channel number
+- **4**: PRN (satellite ID)
+- **71.0**: Elevation
+- **197.0**: Azimuth
+- **41.0**: Signal strength
+- **Y**: Used in solution
+
+**How to Interpret**
+- **Fix Status**: "3D FIX" means you have a full position and altitude solution.
+- **Used/Seen**: Top bar shows how many satellites are visible and how many are used for the fix.
+- **Signal Quality**: SNR > 30 dB-Hz is generally good.
+- **Errors/DOP**: Lower DOP values mean better geometry and accuracy.
+
 #### 2.7.4. Lock Status (Fix/No Fix)
 Indicates whether the receiver has a valid position and time solution.
 - **No Fix**: Not enough satellites or poor signal.
@@ -205,6 +308,25 @@ Indicates whether the receiver has a valid position and time solution.
 The time difference (offset) between the Pulse Per Second (PPS) signal and the system clock, and the variation (jitter) of this offset.
 - **Importance**: Low offset and jitter values indicate tight synchronization and stable timing performance.
 - **How to View**: Tools like chronyc sourcestats, ppstest, or time_pps_fetch().
+#### 2.7.5. PPS Offset and Jitter
+Example of `chronyc -n sources` output:
+
+```
+MS Name/IP address         Stratum Poll Reach LastRx Last sample
+===============================================================================
+#- GPS                          0   4   377    14    +63ms[  +63ms] +/-  251ms
+#* PPS                          0   4   377    12   -148ns[ -305ns] +/-  126ns
+^- <b>185.125.190.57</b>        2  10   377   811  -1634us[-1558us] +/-   49ms
+^- <b>91.189.91.157</b>         2  10   377   696  -2207us[-2142us] +/-   38ms
+^- <b>185.125.190.58</b>        2  10   377   825  -1334us[-1258us] +/-   49ms
+^- <b>185.125.190.56</b>        2  10   377   824  -2045us[-1968us] +/-   48ms
+^- <b>5.78.62.36</b>            4  10   377   620   -387us[ -330us] +/-   49ms
+^- <b>69.172.133.130</b>        2  10   377    42  -3009us[-3008us] +/-   20ms
+^- <b>96.231.54.40</b>          1  10   377   310  -2554us[-2534us] +/-   17ms
+^- <b>23.142.248.8</b>          2  10   377   517  -3047us[-3001us] +/-   33ms
+
+```
+
 #### 2.7.6. Temperature
 Some GNSS modules and oscillators report temperature.
 - **Importance**: Temperature fluctuations can affect oscillator stability and timing accuracy, especially in quartz-based systems.
@@ -357,6 +479,8 @@ In future iterations, we recommend:
 - Developed a bash script utilizing gpspipe to automatically save the GPS almanac data every 12 hours.
 - Integrated the script with the system to ensure regular backups of the almanac, contributing to faster satellite acquisition.
 - Created an interactive Jupyter notebook (ipynb) for visualizing GPS and timing data.
+- Set up a Docker environment to test Grafana dashboards locally in a separate branch, using:
+  `docker run --rm -d -p 3000:3000 -e GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource --name grafana grafana/grafana`
 - Contributed to the README and wrote the introduction and background sections of the final project report, providing context for the technical work.
 - Maintained the project’s .gitignore and general repository hygiene.
 
