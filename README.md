@@ -480,8 +480,7 @@ In future iterations, we recommend:
 - Developed a bash script utilizing gpspipe to automatically save the GPS almanac data every 12 hours.
 - Integrated the script with the system to ensure regular backups of the almanac, contributing to faster satellite acquisition.
 - Created an interactive Jupyter notebook (ipynb) for visualizing GPS and timing data.
-- Set up a Docker environment to test Grafana dashboards locally in a separate branch, using:
-  `docker run --rm -d -p 3000:3000 -e GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource --name grafana grafana/grafana`
+- Set up a Docker environment to test Grafana dashboards locally in a separate branch.
 - Contributed to the README and wrote the introduction and background sections of the final project report, providing context for the technical work.
 - Maintained the project’s .gitignore and general repository hygiene.
 
