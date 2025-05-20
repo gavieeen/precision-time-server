@@ -472,7 +472,7 @@ In future iterations, we recommend:
 - Visualized GPS and Timing Data in Grafana Dashboards
 → Connected Prometheus as a data source, added dashboard panels using gps_status_alt, gps_status_lat, gps_jitter_epx, and node_timex_pps_jitter_seconds to show live positioning and timing stability. Ensured dashboards refresh in real time, and exported the config for teammates to reuse via a .tar.gz bundle.
 
-2. What did you learn as a result of doing your project?
+2. What did you learn as a  result of doing your project?
 
 I learned how to utilize modern real-time dashboarding tools to integrate low-level GNSS and PPS timing hardware. In terms of technical skills, I learned how to
 
