@@ -402,7 +402,7 @@ To run:
 All settings are stored in `telegraf-gps-backup.tar.gz` and versioned for reproducibility.
 
 ---
-
+g
 ## 6. Results and Analysis
 Sample metrics collected:
 
@@ -445,12 +445,20 @@ In future iterations, we recommend:
 - Tested PPS signals and time synchronization accuracy using tools like ppstest, chronyc, and gpsmon, and collaborated closely with my team and professor to debug and improve the system
 
 2. What did you learn as a result of doing your project?
+-I learned the importance of timing accuracy especially in HFT
+-I learned how to interact with embedded systems 
+-I learned how to use and configure peripherals connected to a Raspberry Pi 
 
 3. If you had a time machine and could go back to the beginning, what would you have done differently?
+ -I would definitely reach out to the professor more often, he's very knowledgable and he is always looking to help. Another thing that I would do would be to deeply understand my project and have a clear goal in mind. Doing this would've prevented me from going on unrelated tangents during the project. I also would have read through the other student's previous projects earlier. 
 
 4. If you were to continue working on this project, what would you continue to do to improve it, how, and why?
+  -I would like to set up another Raspberry Pi as a client to actively test the real time accuracy of our PTP server.
+  -I would also like to play with the Rubidium ocilator to see how accurate our timing servers could get.
+  -Adding MAC timestamping would also be a cool aspect to add.
 
 5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
+  -Do not be afraid to learn new technologies, we were all unfamiliar with embedded systems and timing servers before this. Also read the student's previous projects if they are similar to yours, that can give you a good roadmap into how to set up your project and what technologies to use. Finally, make sure to commit often and update your team members on your work, this prevents your teammates from getting confused.
 
 ### 9.2. Chetan Boddeti
 
@@ -466,11 +474,39 @@ In future iterations, we recommend:
 
 2. What did you learn as a result of doing your project?
 
+I learned how to utilize modern real-time dashboarding tools to integrate low-level GNSS and PPS timing hardware. In terms of technical skills, I learned how to
+
+- Parse live GPSD output and computing precision timing metrics like jitter.
+
+- Write custom Telegraf plugins using exec to pipe real-time sensor data into a monitoring pipeline.
+
+- Visualize metrics in Grafana and troubleshooting missing/incomplete data.
+
+Overall, this project helped me develop core technical skills as well as professional project experiences that will help me continue to work on tangible and impactful projects in the future that can help change our understanding of technology for the better.
+
+
 3. If you had a time machine and could go back to the beginning, what would you have done differently?
+
+- Created a shared configuration backup/playbook earlier to ensure consistent setup across team members.
+
+- Established metric output formats earlier (especially Prometheus vs. Influx) to avoid reworking the telegraf-gps.sh script multiple times.
+
 
 4. If you were to continue working on this project, what would you continue to do to improve it, how, and why?
 
+- Building Grafana dashboards for alerting (e.g., if jitter > 50µs) using thresholds and annotations.
+
+- Containerizing the whole stack (GPSD + Telegraf + Prometheus + Grafana) with Docker for portability and reproducibility.
+
+- Logging GPSD restarts and hardware errors using journald or syslog integration, which is critical for diagnosing sync issues in production systems.
+
 5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
+
+- Back up your config files constantly — and treat them like source code.
+→ One small change to a Telegraf or GPSD configuration file can break your entire pipeline and take hours to debug, especially when dealing with edge-case hardware like PPS. We found that keeping a running archive of our .conf files, shell scripts, and modified systemd service overrides saved us from major regressions. 
+
+- Get the full pipeline working end-to-end — even with fake data — as early as possible.
+→ It’s tempting to focus a lot on the hardware (ex., getting GPS lock) or the UI (Grafana panels), but nothing reveals design gaps like running actual live data through the whole stack. We spent more time than expected debugging why metrics weren’t showing up in Grafana only to realize it was a Prometheus formatting mismatch from our Telegraf exec script. 
 
 ### 9.3. Gavin Ebenezer
 
@@ -480,26 +516,12 @@ In future iterations, we recommend:
 - Developed a bash script utilizing gpspipe to automatically save the GPS almanac data every 12 hours.
 - Integrated the script with the system to ensure regular backups of the almanac, contributing to faster satellite acquisition.
 - Created an interactive Jupyter notebook (ipynb) for visualizing GPS and timing data.
-- Set up a Docker environment to test Grafana dashboards locally in a separate branch.
+- Set up a Docker environment to test Grafana dashboards locally in a separate branch, using:
+  `docker run --rm -d -p 3000:3000 -e GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource --name grafana grafana/grafana`
 - Contributed to the README and wrote the introduction and background sections of the final project report, providing context for the technical work.
 - Maintained the project’s .gitignore and general repository hygiene.
 
 2. What did you learn as a result of doing your project?
-
-I learned:
-
-**Technical**
-- How different time synchronization methods work, including GPS-based (with PPS), PTP, and NTP.
-- How to implement and compare these synchronization methods on hardware like Raspberry Pi.
-- The basics of interrupt steering and CPU core isolation to improve timing accuracy.
-- How to automate tasks with bash scripts, like saving and restoring GPS almanac data for faster GNSS lock.
-
-**Personal**
-- The value of communicating daily with my team to coordinate work and solve problems quickly.
-- The importance of making consistent, daily progress and keeping everyone updated.
-- How to write clear commit messages and maintain good repository hygiene.
-- The benefits of documenting my work so others can understand and build on it.
-
 
 3. If you had a time machine and could go back to the beginning, what would you have done differently?
 
