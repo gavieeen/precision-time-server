@@ -452,32 +452,37 @@ In future iterations, we recommend:
 ## 9. Reflections
 ### 9.1. Aryan Sapre - Project Lead
 
-1. What did you specifically do individually for this project?
+1. *What did you specifically do individually for this project?*
 
 - Set up GPSD with a u-blox GNSS receiver, enabled PPS via GPIO18, and configured Chrony to use both GPS and PPS sources
 - Implemented CPU isolation and IRQ steering to dedicate cores for time-sensitive interrupts and services, including assigning chronyd to its own core
 - Contributed to the Ansible playbook to automate the system setup, ensuring reproducibility and idempotence
 - Tested PPS signals and time synchronization accuracy using tools like ppstest, chronyc, and gpsmon, and collaborated closely with my team and professor to debug and improve the system
 
-2. What did you learn as a result of doing your project?
--I learned the importance of timing accuracy especially in HFT
--I learned how to interact with embedded systems 
--I learned how to use and configure peripherals connected to a Raspberry Pi 
+2. *What did you learn as a result of doing your project?*
 
-3. If you had a time machine and could go back to the beginning, what would you have done differently?
- -I would definitely reach out to the professor more often, he's very knowledgable and he is always looking to help. Another thing that I would do would be to deeply understand my project and have a clear goal in mind. Doing this would've prevented me from going on unrelated tangents during the project. I also would have read through the other student's previous projects earlier. 
+- I learned the importance of timing accuracy especially in HFT
+- I learned how to interact with embedded systems 
+- I learned how to use and configure peripherals connected to a Raspberry Pi 
 
-4. If you were to continue working on this project, what would you continue to do to improve it, how, and why?
-  -I would like to set up another Raspberry Pi as a client to actively test the real time accuracy of our PTP server.
-  -I would also like to play with the Rubidium ocilator to see how accurate our timing servers could get.
-  -Adding MAC timestamping would also be a cool aspect to add.
+3. *If you had a time machine and could go back to the beginning, what would you have done differently?*
 
-5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
-  -Do not be afraid to learn new technologies, we were all unfamiliar with embedded systems and timing servers before this. Also read the student's previous projects if they are similar to yours, that can give you a good roadmap into how to set up your project and what technologies to use. Finally, make sure to commit often and update your team members on your work, this prevents your teammates from getting confused.
+- I would definitely reach out to the professor more often, he's very knowledgable and he is always looking to help. Another thing that I would do would be to deeply understand my project and have a clear goal in mind. Doing this would've prevented me from going on unrelated tangents during the project. I also would have read through the other student's previous projects earlier. 
+
+4. *If you were to continue working on this project, what would you continue to do to improve it, how, and why?*
+
+- I would like to set up another Raspberry Pi as a client to actively test the real time accuracy of our PTP server.
+- I would also like to play with the Rubidium ocilator to see how accurate our timing servers could get.
+- Adding MAC timestamping would also be a cool aspect to add.
+
+5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. *
+
+- Do not be afraid to learn new technologies, we were all unfamiliar with embedded systems and timing servers before this. Also read the student's previous projects if they are similar to yours, that can give you a good roadmap into how to set up your project and what technologies to use. Finally, make sure to commit often and update your team members on your work, this prevents your teammates from getting confused.
 
 ### 9.2. Chetan Boddeti
 
-1. What did you specifically do individually for this project?
+1. *What did you specifically do individually for this project?*
+
 - Configured a Precision Time Server on Raspberry Pi (CM4)
 → Set up GPS module and PPS (Pulse Per Second) input via /dev/ttyACM0 and /dev/pps0. Installed and configured gpsd, verified PPS via ppstest, synchronized system time using chrony, and confirmed high-precision GNSS lock. Also routed PPS interrupts to CPU0 and optimized kernel IRQ behavior for timing stability.
 
@@ -487,7 +492,7 @@ In future iterations, we recommend:
 - Visualized GPS and Timing Data in Grafana Dashboards
 → Connected Prometheus as a data source, added dashboard panels using gps_status_alt, gps_status_lat, gps_jitter_epx, and node_timex_pps_jitter_seconds to show live positioning and timing stability. Ensured dashboards refresh in real time, and exported the config for teammates to reuse via a .tar.gz bundle.
 
-2. What did you learn as a result of doing your project?
+2. *What did you learn as a result of doing your project?*
 
 I learned how to utilize modern real-time dashboarding tools to integrate low-level GNSS and PPS timing hardware. In terms of technical skills, I learned how to
 
@@ -500,14 +505,14 @@ I learned how to utilize modern real-time dashboarding tools to integrate low-le
 Overall, this project helped me develop core technical skills as well as professional project experiences that will help me continue to work on tangible and impactful projects in the future that can help change our understanding of technology for the better.
 
 
-3. If you had a time machine and could go back to the beginning, what would you have done differently?
+3. *If you had a time machine and could go back to the beginning, what would you have done differently?*
 
 - Created a shared configuration backup/playbook earlier to ensure consistent setup across team members.
 
 - Established metric output formats earlier (especially Prometheus vs. Influx) to avoid reworking the telegraf-gps.sh script multiple times.
 
 
-4. If you were to continue working on this project, what would you continue to do to improve it, how, and why?
+4. *If you were to continue working on this project, what would you continue to do to improve it, how, and why?*
 
 - Building Grafana dashboards for alerting (e.g., if jitter > 50µs) using thresholds and annotations.
 
@@ -515,7 +520,7 @@ Overall, this project helped me develop core technical skills as well as profess
 
 - Logging GPSD restarts and hardware errors using journald or syslog integration, which is critical for diagnosing sync issues in production systems.
 
-5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
+5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. *
 
 - Back up your config files constantly — and treat them like source code.
 → One small change to a Telegraf or GPSD configuration file can break your entire pipeline and take hours to debug, especially when dealing with edge-case hardware like PPS. We found that keeping a running archive of our .conf files, shell scripts, and modified systemd service overrides saved us from major regressions. 
@@ -525,7 +530,7 @@ Overall, this project helped me develop core technical skills as well as profess
 
 ### 9.3. Gavin Ebenezer
 
-1. What did you specifically do individually for this project?
+1. *What did you specifically do individually for this project?*
 
 - Researched and learned methods to periodically save and load the GPS almanac to improve GNSS lock speed after power cycles.
 - Developed a bash script utilizing gpspipe to automatically save the GPS almanac data every 12 hours.
@@ -535,7 +540,7 @@ Overall, this project helped me develop core technical skills as well as profess
 - Contributed to the README and wrote the introduction and background sections of the final project report, providing context for the technical work.
 - Maintained the project’s .gitignore and general repository hygiene.
 
-2. What did you learn as a result of doing your project?
+2. *What did you learn as a result of doing your project?*
 
 I learned:
 
@@ -552,15 +557,15 @@ I learned:
 - The benefits of documenting my work so others can understand and build on it.
 
 
-3. If you had a time machine and could go back to the beginning, what would you have done differently?
+3. *If you had a time machine and could go back to the beginning, what would you have done differently?*
 
 If I had a time machine, I would have grabbed the new YubiKey I bought off the countertop right away—turns out, leaving security hardware unattended around roommates is a risky move (RIP, YubiKey). On the technical side, I would have focused on breaking the project into smaller, manageable tasks from the start and tackling them earlier. This approach would have helped avoid last-minute scrambles and made it easier to troubleshoot issues as they came up.
 
-4. If you were to continue working on this project, what would you continue to do to improve it, how, and why?
+4. *If you were to continue working on this project, what would you continue to do to improve it, how, and why?*
 
 If I were to continue working on this project, I would focus on properly connecting and reading data from the rubidium clock, and integrating it with the existing PPS/GNSS setup to leverage the long-term accuracy of the rubidium source and the short-term precision of GNSS. I would add more parameters to monitor and analyze in Grafana, combining the strengths of both timing sources for optimal performance. I would also work on building a client interface so others can easily use and visualize the timing data, and explore the potential of developing this into a startup product.
 
-5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
+5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. *
 
   **Advice 1**. A lot of concepts in the HFT world are deeply connected—not just within your project, but to real-world events and the material covered in lectures. The more you pay attention to the news, industry trends, and what the professor discusses in class, the easier it will be to spot valuable connections and opportunities for your project. Actively seeking out these links will help you make your project more robust and relevant.
 
