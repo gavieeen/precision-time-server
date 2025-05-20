@@ -434,6 +434,21 @@ In future iterations, we recommend:
 
 ## 8. References 
 
+1. **Linux Man Pages**. phc2sys. Retrieved from [Ubuntu Manpages](https://manpages.ubuntu.com/manpages/focal/man8/phc2sys.8.html)
+2. **Linux Man Pages**. pmc. Retrieved from [Ubuntu Manpages](https://manpages.ubuntu.com/manpages/jammy/man8/pmc.8.html)
+3. **Linux PTP Documentation**. phc2sys Documentation. Retrieved from [Linux PTP Docs](https://linuxptp.nwtime.org/documentation/phc2sys/)
+4. **Tcpdump public repository** (2024). tcpdump(1) - Linux man page. Retrieved from [Tcpdump](https://www.tcpdump.org/manpages/tcpdump.1.html)
+5. **u-blox** (2019). ZED-F9T-00B Data Sheet. Retrieved from [u-blox](https://content.u-blox.com/sites/default/files/ZED-F9T-00B_DataSheet_UBX-18053713.pdf)
+6. **u-blox** (2011). LEA-5T Data Sheet. Retrieved from [Datasheets.com](https://www.datasheets.com/part-details/lea-5t-0-003-u-blox-45360444)
+7. **Masterclock** (n.d.). Network timing technology: NTP vs. PTP. Retrieved from [Masterclock](https://www.masterclock.com/network-timing-technology-ntp-vs-ptp.html)
+8. **Raspberry Pi Foundation** (2023, October). Raspberry Pi 5 product brief. Retrieved from [Raspberry Pi 5 Product Brief](https://datasheets.raspberrypi.com/rpi5/raspberry-pi-5-product-brief.pdf?_gl=1*fvfg7y*_ga*ODc3OTU3MjEwLjE3MTUzNjA1OTA.*_ga_22FD70LWDS*MTcxNTY1MzQ2Mi4xLjEuMTcxNTY1MzQ2Ni4wLjAuMA..)
+9. **Raspberry Pi Foundation** (2023, November 24). Compute Module 4 datasheet. Retrieved from [Compute Module 4 Datasheet](https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf?_gl=1*dqncqy*_ga*ODc3OTU3MjEwLjE3MTUzNjA1OTA.*_ga_22FD70LWDS*MTcxNTY1MzQ2Mi4xLjEuMTcxNTY1MzU2My4wLjAuMA..)
+10. **Raspberry Pi Foundation** (2023, December). Raspberry Pi 4 product brief. Retrieved from [Raspberry Pi 4 Product Brief](https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-product-brief.pdf?_gl=1*116ho8q*_ga*ODc3OTU3MjEwLjE3MTUzNjA1OTA.*_ga_22FD70LWDS*MTcxNTY1MzQ2Mi4xLjEuMTcxNTY1MzcxNy4wLjAuMA..)
+11. **Clark, J.** (n.d.). *rpi-cm4-ptp-guide: OS Setup*. Retrieved from [GitHub](https://github.com/jclark/rpi-cm4-ptp-guide/blob/main/os.md)  
+12. **Hackaday** (2025, February 27). *Linux Fu: USB Everywhere*. Retrieved from [Hackaday](https://hackaday.com/2025/02/27/linux-fu-usb-everywhere/)  
+13. **Austin’s Nerdy Things** (2025, February 14). *Revisiting Microsecond-Accurate NTP for Raspberry Pi with GPS + PPS in 2025*. Retrieved from [Austin's Nerdy Things](https://austinsnerdythings.com/2025/02/14/revisiting-microsecond-accurate-ntp-for-raspberry-pi-with-gps-pps-in-2025/)  
+14. **AMD** (n.d.). *UG1602: PTP User Guide*. Retrieved from [AMD Documentation](https://docs.amd.com/r/en-US/ug1602-ptp-user)
+
 ## 9. Reflections
 ### 9.1. Aryan Sapre - Project Lead
 
@@ -549,10 +564,8 @@ If I were to continue working on this project, I would focus on properly connect
 
   **Advice 1**. A lot of concepts in the HFT world are deeply connected—not just within your project, but to real-world events and the material covered in lectures. The more you pay attention to the news, industry trends, and what the professor discusses in class, the easier it will be to spot valuable connections and opportunities for your project. Actively seeking out these links will help you make your project more robust and relevant.
 
-  
-  **Advice 2**. Use your resources—ESPECIALLY THE PROFESSOR! There’s a wealth of information out there: articles, YouTube videos, GitHub repos (including those from previous students), and tools like ChatGPT that can help you configure and set up unfamiliar tech stacks. The more research you do, and the more you ask the professor when you hit a roadblock, the more likely you are to learn something new that not only solves your immediate problem but also makes you a stronger developer for the future.
 
-Team Members: (Chetan Boddeti), (Aryan Sapre), (Gavin Ebenezer)
+  **Advice 2**. Use your resources—ESPECIALLY THE PROFESSOR! There’s a wealth of information out there: articles, YouTube videos, GitHub repos (including those from previous students), and tools like ChatGPT that can help you configure and set up unfamiliar tech stacks. The more research you do, and the more you ask the professor when you hit a roadblock, the more likely you are to learn something new that not only solves your immediate problem but also makes you a stronger developer for the future.
 
 
 ## Project status
