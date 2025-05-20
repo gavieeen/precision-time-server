@@ -12,9 +12,11 @@ Precise time synchronization is critical in HFT and similar domains, where timin
 
 Our findings will contribute to building more affordable infrastructure for precise time distribution in fields like telecom, finance, and IoT. By using open tools like gpsd and chrony, we hope to create a deployable blueprint for others seeking microsecond accuracy on a budget.
 
+# Demo Video
+
+[Demo Video](./ie421_hft_spring_2025_group_07.mp4)
+
 # Contributors
-
-
 
 ## Gavin Ebenezer
 Hi! I’m a Computer Science major at the **University of Illinois at Urbana‐Champaign**, graduating in **May 2026**.  
