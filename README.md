@@ -31,7 +31,7 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 
 ---
 💼 **Availability**
-- 🎓 **Graduation:** May 2026  
+- 🎓 **Graduation:** May 2026
 - 💻 **Internships:** Open to **Fall 2025**, **Spring 2026**, and **Summer 2026** roles  
 - 🔁 **Full-time:** Open to **full-time positions starting Summer 2026**
 - 🌐 **Fields of Interest:** Software Engineering, Quantitative Finance, Trading Infrastructure, Backend Systems
