@@ -516,12 +516,26 @@ Overall, this project helped me develop core technical skills as well as profess
 - Developed a bash script utilizing gpspipe to automatically save the GPS almanac data every 12 hours.
 - Integrated the script with the system to ensure regular backups of the almanac, contributing to faster satellite acquisition.
 - Created an interactive Jupyter notebook (ipynb) for visualizing GPS and timing data.
-- Set up a Docker environment to test Grafana dashboards locally in a separate branch, using:
-  `docker run --rm -d -p 3000:3000 -e GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource --name grafana grafana/grafana`
+- Set up a Docker environment to test Grafana dashboards locally in a separate branch.
 - Contributed to the README and wrote the introduction and background sections of the final project report, providing context for the technical work.
 - Maintained the project’s .gitignore and general repository hygiene.
 
 2. What did you learn as a result of doing your project?
+
+I learned:
+
+**Technical**
+- How different time synchronization methods work, including GPS-based (with PPS), PTP, and NTP.
+- How to implement and compare these synchronization methods on hardware like Raspberry Pi.
+- The basics of interrupt steering and CPU core isolation to improve timing accuracy.
+- How to automate tasks with bash scripts, like saving and restoring GPS almanac data for faster GNSS lock.
+
+**Personal**
+- The value of communicating daily with my team to coordinate work and solve problems quickly.
+- The importance of making consistent, daily progress and keeping everyone updated.
+- How to write clear commit messages and maintain good repository hygiene.
+- The benefits of documenting my work so others can understand and build on it.
+
 
 3. If you had a time machine and could go back to the beginning, what would you have done differently?
 
