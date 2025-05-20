@@ -543,9 +543,9 @@ If I had a time machine, I would have grabbed the new YubiKey I bought off the c
 
 4. If you were to continue working on this project, what would you continue to do to improve it, how, and why?
 
+If I were to continue working on this project, I would focus on properly connecting and reading data from the rubidium clock, and integrating it with the existing PPS/GNSS setup to leverage the long-term accuracy of the rubidium source and the short-term precision of GNSS. I would add more parameters to monitor and analyze in Grafana, combining the strengths of both timing sources for optimal performance. I would also work on building a client interface so others can easily use and visualize the timing data, and explore the potential of developing this into a startup product.
+
 5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
-
-
 
 
 
