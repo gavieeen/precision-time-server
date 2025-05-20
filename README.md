@@ -19,6 +19,11 @@ Our findings will contribute to building more affordable infrastructure for prec
 # Contributors
 
 ## Gavin Ebenezer
+📸 **Photo**
+<div align="center">
+  <img src="./GavinProfile.png" alt="Gavin Ebenezer Profile Pic" width="200"/>
+</div>
+
 Hi! I’m a Computer Science major at the **University of Illinois at Urbana‐Champaign**, graduating in **May 2026**.  
 It’s fun to solve problems. That curiosity and persistence have fueled my love for Computer Science, especially in areas like **data structures and algorithms**. I enjoy the mathematical elegance of efficient problem-solving and the creativity involved in building solutions that scale.
 
@@ -41,14 +46,13 @@ I’m especially drawn to the world of **software engineering and finance**, whe
 - Personal Email: gavinebenezer@gmail.com
 - Student Email: gavinae2@illinois.edu
 
----
-📸 **Photo**
-<div align="center">
-  <img src="./GavinProfile.png" alt="Gavin Ebenezer Profile Pic" width="200"/>
-</div>
-
 
 ## Chetan Boddeti
+📸 **Photo**
+<div align="center">
+  <img src="./ChetanProfile.jpeg" alt="Chetan Boddeti Profile Pic" width="200"/>
+</div>
+
 Hi! I’m a Computer Science major at the **University of Illinois at Urbana‐Champaign**, graduating in **May 2026**.  
 I am passionate about working on cutting-edge technology that can help us push the fronteir of AI and hardware. I enjoy working with GPU architecture and AI modeling as well as the intersection between HPC and statistics. My specific interests lie in ML, Bayesian Statistics, GPU Programming, and Distributed Systems.
 
@@ -70,14 +74,12 @@ I am also draw into the intersection of Finance and Software engineering and how
 - Personal Email: chetan.boddeti@gmail.com
 - Student Email: boddeti2@illinois.edu
 
----
-📸 **Photo**
-<div align="center">
-  <img src="./ChetanProfile.jpeg" alt="Chetan Boddeti Profile Pic" width="200"/>
-</div>
-
 
 ## Aryan Sapre
+📸 **Photo**
+<div align="center">
+  <img src="./AryanProfile.JPG" alt="Aryan Sapre" width="200"/>
+</div>
 Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University of Illinois at Urbana-Champaign, graduating in May 2026. I'm passionate about pushing the bounds of technology and love working at the intersection of hardware and software. My specific interests lie in system programming, operating systems, and embedded systems, where I’m excited to explore how deep technical innovation can create real-world impact.
 
 ---
@@ -92,12 +94,6 @@ Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University o
 🔗 **Links**
 - [LinkedIn](https://www.linkedin.com/in/aryansapre/)
 - Student Email: aryanns2@illinois.edu
-
----
-📸 **Photo**
-<div align="center">
-  <img src="./AryanProfile.JPG" alt="Aryan Sapre" width="200"/>
-</div>
 
 
 
