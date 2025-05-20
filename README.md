@@ -486,6 +486,21 @@ In future iterations, we recommend:
 
 2. What did you learn as a result of doing your project?
 
+I learned:
+
+**Technical**
+- How different time synchronization methods work, including GPS-based (with PPS), PTP, and NTP.
+- How to implement and compare these synchronization methods on hardware like Raspberry Pi.
+- The basics of interrupt steering and CPU core isolation to improve timing accuracy.
+- How to automate tasks with bash scripts, like saving and restoring GPS almanac data for faster GNSS lock.
+
+**Personal**
+- The value of communicating daily with my team to coordinate work and solve problems quickly.
+- The importance of making consistent, daily progress and keeping everyone updated.
+- How to write clear commit messages and maintain good repository hygiene.
+- The benefits of documenting my work so others can understand and build on it.
+
+
 3. If you had a time machine and could go back to the beginning, what would you have done differently?
 
 4. If you were to continue working on this project, what would you continue to do to improve it, how, and why?
