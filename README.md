@@ -503,6 +503,8 @@ I learned:
 
 3. If you had a time machine and could go back to the beginning, what would you have done differently?
 
+If I had a time machine, I would have grabbed the new YubiKey I bought off the countertop right away—turns out, leaving security hardware unattended around roommates is a risky move (RIP, YubiKey). On the technical side, I would have focused on breaking the project into smaller, manageable tasks from the start and tackling them earlier. This approach would have helped avoid last-minute scrambles and made it easier to troubleshoot issues as they came up.
+
 4. If you were to continue working on this project, what would you continue to do to improve it, how, and why?
 
 5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
