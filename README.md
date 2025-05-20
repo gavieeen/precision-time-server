@@ -475,7 +475,7 @@ In future iterations, we recommend:
 - I would also like to play with the Rubidium ocilator to see how accurate our timing servers could get.
 - Adding MAC timestamping would also be a cool aspect to add.
 
-5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. *
+5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses.*
 
 - Do not be afraid to learn new technologies, we were all unfamiliar with embedded systems and timing servers before this. Also read the student's previous projects if they are similar to yours, that can give you a good roadmap into how to set up your project and what technologies to use. Finally, make sure to commit often and update your team members on your work, this prevents your teammates from getting confused.
 
@@ -520,7 +520,7 @@ Overall, this project helped me develop core technical skills as well as profess
 
 - Logging GPSD restarts and hardware errors using journald or syslog integration, which is critical for diagnosing sync issues in production systems.
 
-5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. *
+5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses.*
 
 - Back up your config files constantly — and treat them like source code.
 → One small change to a Telegraf or GPSD configuration file can break your entire pipeline and take hours to debug, especially when dealing with edge-case hardware like PPS. We found that keeping a running archive of our .conf files, shell scripts, and modified systemd service overrides saved us from major regressions. 
@@ -565,7 +565,7 @@ If I had a time machine, I would have grabbed the new YubiKey I bought off the c
 
 If I were to continue working on this project, I would focus on properly connecting and reading data from the rubidium clock, and integrating it with the existing PPS/GNSS setup to leverage the long-term accuracy of the rubidium source and the short-term precision of GNSS. I would add more parameters to monitor and analyze in Grafana, combining the strengths of both timing sources for optimal performance. I would also work on building a client interface so others can easily use and visualize the timing data, and explore the potential of developing this into a startup product.
 
-5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. *
+5. *What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses.*
 
   **Advice 1**. A lot of concepts in the HFT world are deeply connected—not just within your project, but to real-world events and the material covered in lectures. The more you pay attention to the news, industry trends, and what the professor discusses in class, the easier it will be to spot valuable connections and opportunities for your project. Actively seeking out these links will help you make your project more robust and relevant.
 
