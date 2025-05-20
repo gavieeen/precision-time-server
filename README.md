@@ -548,6 +548,8 @@ If I were to continue working on this project, I would focus on properly connect
 5. What advice do you offer to future students taking this course and working on their semester-long project (besides “start earlier”… everyone ALWAYS says that). Providing detailed thoughtful advice to future students will be weighed heavily in evaluating your responses. 
 
   **Advice 1**. A lot of concepts in the HFT world are deeply connected—not just within your project, but to real-world events and the material covered in lectures. The more you pay attention to the news, industry trends, and what the professor discusses in class, the easier it will be to spot valuable connections and opportunities for your project. Actively seeking out these links will help you make your project more robust and relevant.
+
+  
   **Advice 2**. Use your resources—ESPECIALLY THE PROFESSOR! There’s a wealth of information out there: articles, YouTube videos, GitHub repos (including those from previous students), and tools like ChatGPT that can help you configure and set up unfamiliar tech stacks. The more research you do, and the more you ask the professor when you hit a roadblock, the more likely you are to learn something new that not only solves your immediate problem but also makes you a stronger developer for the future.
 
 Team Members: (Chetan Boddeti), (Aryan Sapre), (Gavin Ebenezer)
