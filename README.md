@@ -494,7 +494,7 @@ In future iterations, we recommend:
 
 
 
-![alt text](image.png)
+
 
 Team Members: (Chetan Boddeti), (Aryan Sapre), (Gavin Ebenezer)
 
