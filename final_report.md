@@ -250,10 +250,11 @@ Average jitter: <font color="red">166667538.33</font> ns
 </pre>
 
 And here is an aggregate view of 20+ GNSS and PPS samples collected every 12 hours over the span of one week to get a better idea of the data as a whole:
-> ![Aggregate GNSS Data Plot](./assets/aggregate_log.png)
+> ![Aggregate GNSS Data Plot](./assets/aggregate.png)
 
 
 ## 4. Methodology
+![Raspberry Pi hooked up to PPS GPS](./assets/rp.png)
 The system’s architecture includes:
 
 * A GNSS receiver with PPS output connected to GPIO18
@@ -267,6 +268,7 @@ Metrics include:
 * `gps_status_lat`, `gps_status_lon`, `gps_status_alt`: Live GNSS coordinates
 * `gps_status_sep`, `gps_status_eph`: Satellite precision metrics
 * `cpu_usage_user`, `cpu_usage_idle`, `irq`, `iowait`: System load
+* `gps_jitter_epv`, `gps_jitter_epx`, `gps_jitter_epy`: GNSS position jitter metrics (vertical, x, y)
 * `chrony_skew_ppm`, `chrony_rms_offset`, `chrony_jitter`: Clock discipline quality
 
 Grafana dashboards visualize trends and allow remote analysis of satellite visibility, jitter trends, and pulse quality over time.
@@ -276,7 +278,7 @@ Grafana dashboards visualize trends and allow remote analysis of satellite visib
 Technologies used:
 
 * `gpsd`, `chrony`, `ppstest`: low-level GNSS/PPS parsing
-* `jq`, `gpspipe`, Bash: custom script metrics extraction
+* `jq`, `gpspipe`, `Bash`: custom script metrics extraction
 * `Telegraf`: main collector for CPU, PPS, GPS
 * `Grafana`: visualization
 
@@ -309,10 +311,12 @@ Visualizations:
 * Grafana panel: Satellite visibility (`gps_status_sep`, `eph`)
 * Grafana panel: CPU usage and system jitter (`cpu_usage_irq`, `cpu_usage_user`)
 * Grafana panel: GNSS jitter metrics over time (`gps_jitter_epv`, `gps_jitter_epx`, `gps_jitter_epy`)
-> ![Jitter Plot](./assets/jitter_plot.png)
 * Chrony timing stats overlayed on a dashboard using `exec` plugin
 
 These results confirm stable PPS input, high GNSS fix quality, and usable system clock alignment.
+
+*Example Grafana Panel/Plot (Jitter over time)*
+> ![Jitter Plot](./assets/jitter_plot.png)
 
 ## 7. Conclusion and Future Work
 This project successfully demonstrates a software-defined precision timing server using Raspberry Pi hardware and GNSS PPS signals. Our modular setup with GPSD, chrony, Telegraf, and Grafana provides real-time insights into GPS synchronization and system health.

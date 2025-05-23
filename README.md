@@ -14,7 +14,7 @@ Our findings will contribute to building more affordable infrastructure for prec
 
 # Demo Video
 
-![Demo Video](./ie421_hft_spring_2025_group_07.mp4)
+![Demo Video](./assets/ie421_hft_spring_2025_group_07.mp4)
 
 # Contributors
 
