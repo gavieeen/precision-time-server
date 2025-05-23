@@ -14,6 +14,8 @@ Our findings will contribute to building more affordable and efficient infrastru
 
 # Demo Video
 
+Quick video to showcase how our project was built and functions!
+
 ![Demo Video](./assets/ie421_hft_spring_2025_group_07.mp4)
 
 # Contributors
