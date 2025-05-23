@@ -1,4 +1,4 @@
-# **PTP/PPS TimeSync Grandmaster using Raspberry Pi-Based System in Distributed Systems and HFT**
+# **PTP/PPS TimeSync Grandmaster using Raspberry Pi-Based System in Distributed Systems for HFT**
 [[_TOC_]]
 # Objective
 
