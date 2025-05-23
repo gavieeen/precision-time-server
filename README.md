@@ -117,7 +117,7 @@ Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University o
 
 - Key packages: gpsd, gpsd-clients, pps-tools, chrony
 
-- Optional: xauth + X11 forwarding (for gpsmon), Telegraf
+- Optional: xauth + X11 forwarding (for gpsmon), Telegraf, Grafana
 
 # Final Report
 
