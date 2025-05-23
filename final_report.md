@@ -238,19 +238,19 @@ These preprocessing steps ensure that raw signal data is aligned, filtered, and 
 
 To provide an overview of the raw data we're working with, here's a sample from a typical GNSS log file processed in a Jupyter Notebook:
 
-> ![Example of GNSS Log](insert-image-here)
+> ![Example of GNSS Log](./assets/single_log.png)
 
 <pre><b>Sample Statistics</b>
-TPV Records: 6
-SKY Records: 5
-Average satellites visible: 40.00
-Average satellites used: 15.00
-PPS Records: 6
-Average jitter: 999998981.17 ns
+TPV Records: <font color="red">6</font>
+SKY Records: <font color="red">5</font>
+Average satellites visible: <font color="red">39.00</font>
+Average satellites used: <font color="red">17.60</font>
+PPS Records: <font color="red">6</font>
+Average jitter: <font color="red">166667538.33</font> ns
 </pre>
 
 And here is an aggregate view of 20+ GNSS and PPS samples collected every 12 hours over the span of one week to get a better idea of the data as a whole:
-> ![Aggregate GNSS Data Plot](insert-aggregate-plot-here)
+> ![Aggregate GNSS Data Plot](./assets/aggregate_log.png)
 
 
 ## 4. Methodology
@@ -308,10 +308,11 @@ Visualizations:
 * Grafana panel: Altitude over time (`gps_status_alt`)
 * Grafana panel: Satellite visibility (`gps_status_sep`, `eph`)
 * Grafana panel: CPU usage and system jitter (`cpu_usage_irq`, `cpu_usage_user`)
+* Grafana panel: GNSS jitter metrics over time (`gps_jitter_epv`, `gps_jitter_epx`, `gps_jitter_epy`)
+> ![Jitter Plot](./assets/jitter_plot.png)
 * Chrony timing stats overlayed on a dashboard using `exec` plugin
 
 These results confirm stable PPS input, high GNSS fix quality, and usable system clock alignment.
-
 
 ## 7. Conclusion and Future Work
 This project successfully demonstrates a software-defined precision timing server using Raspberry Pi hardware and GNSS PPS signals. Our modular setup with GPSD, chrony, Telegraf, and Grafana provides real-time insights into GPS synchronization and system health.
