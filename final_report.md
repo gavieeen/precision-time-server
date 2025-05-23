@@ -254,7 +254,9 @@ And here is an aggregate view of 20+ GNSS and PPS samples collected every 12 hou
 
 
 ## 4. Methodology
-![Raspberry Pi hooked up to PPS GPS](./assets/rp.png)
+<div align="center">
+  <img src="./assets/rp.png" alt="Raspberry Pi hooked up to PPS GPS" width="200"/>
+</div>
 The system’s architecture includes:
 
 * A GNSS receiver with PPS output connected to GPIO18
