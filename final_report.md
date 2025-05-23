@@ -234,6 +234,24 @@ We used GPSD to parse GNSS data and chrony to align the system clock using PPS. 
 
 These preprocessing steps ensure that raw signal data is aligned, filtered, and transformed for real-time metric export.
 
+### 3.1 Data Examples
+
+To provide an overview of the raw data we're working with, here's a sample from a typical GNSS log file processed in a Jupyter Notebook:
+
+> ![Example of GNSS Log](insert-image-here)
+
+<pre><b>Sample Statistics</b>
+TPV Records: 6
+SKY Records: 5
+Average satellites visible: 40.00
+Average satellites used: 15.00
+PPS Records: 6
+Average jitter: 999998981.17 ns
+</pre>
+
+And here is an aggregate view of 20+ GNSS and PPS samples collected every 12 hours over the span of one week to get a better idea of the data as a whole:
+> ![Aggregate GNSS Data Plot](insert-aggregate-plot-here)
+
 
 ## 4. Methodology
 The system’s architecture includes:
