@@ -127,4 +127,4 @@ For more details, please review our [final_report.md](final_report.md)
 [MIT License](LICENSE)
 
 # Project status
-Anyone may choose to fork this project or volunteer to step in as a maintainer or owner, allowing this project to keep going. You can also make an explicit request for maintainers.
+Anyone may choose to fork this project or volunteer to step in as a maintainer or owner, allowing this project to keep going. To contribute directly, please submit a pull request and we will review the changes!
