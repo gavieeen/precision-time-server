@@ -115,9 +115,9 @@ Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University o
 
 - OS: Ubuntu Server 22.04 (64-bit)
 
-- Key packages: gpsd, gpsd-clients, pps-tools, chrony
+- Key packages: gpsd, gpsd-clients, pps-tools, chrony, telegraf, grafana, prometheus
 
-- Optional: xauth + X11 forwarding (for gpsmon), Telegraf, Grafana, Prometheus
+- Optional: xauth + X11 forwarding (for gpsmon)
 
 # Final Report
 
