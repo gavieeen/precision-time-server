@@ -55,7 +55,7 @@ I’m especially drawn to the world of **software engineering and finance**, whe
   <img src="./assets/ChetanProfile.jpeg" alt="Chetan Boddeti Profile Pic" width="200"/>
 </div>
 
-Hi! I’m a Computer Science major at the **University of Illinois at Urbana‐Champaign**, graduating in **May 2026**.  
+Hi! I’m a Computer Science and Economics major at the **University of Illinois at Urbana‐Champaign**, graduating in **May 2026**.  
 I am passionate about working on cutting-edge technology that can help us push the fronteir of AI and hardware. I enjoy working with GPU architecture and AI modeling as well as the intersection between HPC and statistics. My specific interests lie in ML, Bayesian Statistics, GPU Programming, and Distributed Systems.
 
 I am also draw into the intersection of Finance and Software engineering and how we can use technology to further our understanding of money as we know it.
