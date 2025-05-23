@@ -1,0 +1,266 @@
+#!/bin/bash
+
+# Create a dashboard specifically for live GPS data
+cat > live_gps_dashboard.json << 'EOF'
+{
+  "dashboard": {
+    "id": null,
+    "uid": null,
+    "title": "Live GPS Dashboard",
+    "tags": ["gps", "live"],
+    "timezone": "browser",
+    "schemaVersion": 38,
+    "version": 0,
+    "refresh": "5s",
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "type": "gauge",
+        "title": "Satellites Visible",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C9"
+        },
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": ["lastNotNull"],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "min": 0,
+          "max": 32,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 10 },
+              { "color": "green", "value": 20 }
+            ]
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "P951FEA4DE68E13C9"
+            },
+            "query": "from(bucket: \"gps_data\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"satellite_info\")\n  |> filter(fn: (r) => r._field == \"satellites_visible\")\n  |> last()",
+            "refId": "A"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "type": "gauge",
+        "title": "Satellites Used",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C9"
+        },
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": ["lastNotNull"],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true,
+          "min": 0,
+          "max": 16,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "yellow", "value": 4 },
+              { "color": "green", "value": 8 }
+            ]
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "P951FEA4DE68E13C9"
+            },
+            "query": "from(bucket: \"gps_data\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"satellite_info\")\n  |> filter(fn: (r) => r._field == \"satellites_used\")\n  |> last()",
+            "refId": "A"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "type": "timeseries",
+        "title": "GPS Location",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C9"
+        },
+        "options": {
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          },
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "P951FEA4DE68E13C9"
+            },
+            "query": "from(bucket: \"gps_data\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"gps_location\")\n  |> filter(fn: (r) => r._field == \"lat\" or r._field == \"lon\" or r._field == \"altitude\")",
+            "refId": "A"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        },
+        "type": "timeseries",
+        "title": "HDOP & VDOP",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C9"
+        },
+        "options": {
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          },
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "P951FEA4DE68E13C9"
+            },
+            "query": "from(bucket: \"gps_data\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"satellite_info\")\n  |> filter(fn: (r) => r._field == \"hdop\" or r._field == \"vdop\")",
+            "refId": "A"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        },
+        "type": "timeseries",
+        "title": "PDOP & GDOP",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C9"
+        },
+        "options": {
+          "tooltip": {
+            "mode": "multi",
+            "sort": "none"
+          },
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "P951FEA4DE68E13C9"
+            },
+            "query": "from(bucket: \"gps_data\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"satellite_info\")\n  |> filter(fn: (r) => r._field == \"pdop\" or r._field == \"gdop\")",
+            "refId": "A"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "gridPos": {
+          "h": 4,
+          "w": 24,
+          "x": 0,
+          "y": 24
+        },
+        "type": "stat",
+        "title": "Current GPS Position",
+        "datasource": {
+          "type": "influxdb",
+          "uid": "P951FEA4DE68E13C9"
+        },
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": ["lastNotNull"],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "P951FEA4DE68E13C9"
+            },
+            "query": "from(bucket: \"gps_data\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r._measurement == \"gps_location\")\n  |> filter(fn: (r) => r._field == \"lat\" or r._field == \"lon\")\n  |> last()\n  |> map(fn: (r) => ({ _time: r._time, _value: r._value, _field: r._field, position: \"Current Location\" }))",
+            "refId": "A"
+          }
+        ]
+      }
+    ]
+  },
+  "overwrite": true,
+  "message": "Live GPS dashboard created via API",
+  "folderId": 0
+}
+EOF
+
+# Import the dashboard via API
+curl -X POST -H "Content-Type: application/json" -d @live_gps_dashboard.json http://admin:admin@localhost:3001/api/dashboards/db
+
+echo -e "\n\nLive GPS Dashboard created! Access it at: http://localhost:3001/dashboards"

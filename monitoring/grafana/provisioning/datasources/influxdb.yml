@@ -1,0 +1,16 @@
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    isDefault: true
+    uid: P951FEA4DE68E13C9
+    jsonData:
+      version: Flux
+      organization: ie421
+      defaultBucket: gps_data
+      tlsSkipVerify: true
+    secureJsonData:
+      token: my-super-secret-auth-token
