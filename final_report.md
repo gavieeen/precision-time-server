@@ -257,7 +257,10 @@ And here is an aggregate view of 20+ GNSS and PPS samples collected every 12 hou
 
 <div align="center">
   <img src="./assets/rp.png" alt="Raspberry Pi hooked up to PPS GPS" width="200"/>
-  <i> Raspberry Pi hooked up to PPS GPS </i>
+  <br/>
+  <i>Raspberry Pi hooked up to PPS GPS </i>
+  <br/>
+  <i>Picture taken from <a href="https://austinsnerdythings.com/">Austin's Nerdy Things</a></i>
 </div>
 The system’s architecture includes:
 
