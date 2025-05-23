@@ -97,7 +97,7 @@ Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University o
 
 
 
-**- Advised by Professor Lariviere**
+## Advised by Professor Lariviere
 
 
 # Hardware
