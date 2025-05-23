@@ -96,7 +96,6 @@ Hi, I'm Aryan Sapre, a Computer Science and Statistics major at the University o
 - Student Email: aryanns2@illinois.edu
 
 
----
 ## Advised by Professor Lariviere
 
 
