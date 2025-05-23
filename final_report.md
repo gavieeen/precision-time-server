@@ -23,6 +23,7 @@ In this project, we evaluate the use of Raspberry Pi-based servers as Precision 
 ### 2.1. One Second
 The modern definition of a second—9,192,631,770 oscillations of a caesium-133 atom—has been adopted to overcome the inconsistencies in Earth’s rotation, providing a universal, stable reference for global time synchronization.
 
+
 ### 2.2. Clocks and Clock Error
 A clock, in this context, is any device that measures and displays time. No physical clock is perfect; all are subject to clock error, which consists of:
 
@@ -233,7 +234,6 @@ We used GPSD to parse GNSS data and chrony to align the system clock using PPS. 
 
 These preprocessing steps ensure that raw signal data is aligned, filtered, and transformed for real-time metric export.
 
----
 
 ## 4. Methodology
 The system’s architecture includes:
@@ -253,7 +253,6 @@ Metrics include:
 
 Grafana dashboards visualize trends and allow remote analysis of satellite visibility, jitter trends, and pulse quality over time.
 
----
 
 ## 5. Implementation
 Technologies used:
@@ -278,8 +277,6 @@ To run:
 
 All settings are stored in `telegraf-gps-backup.tar.gz` and versioned for reproducibility.
 
----
-g
 ## 6. Results and Analysis
 Sample metrics collected:
 
@@ -297,7 +294,6 @@ Visualizations:
 
 These results confirm stable PPS input, high GNSS fix quality, and usable system clock alignment.
 
----
 
 ## 7. Conclusion and Future Work
 This project successfully demonstrates a software-defined precision timing server using Raspberry Pi hardware and GNSS PPS signals. Our modular setup with GPSD, chrony, Telegraf, and Grafana provides real-time insights into GPS synchronization and system health.
