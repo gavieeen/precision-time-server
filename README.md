@@ -23,11 +23,11 @@ Precise time synchronization is critical in HFT and similar domains, where timin
 
 Our findings will contribute to building more affordable and efficient infrastructure for precise time distribution in fields like telecom, finance, and IoT. By using open tools like gpsd and chrony for utilizing gps data, and grafana for dashboarding we hope to create a deployable blueprint for others seeking microsecond accuracy on a budget.
 
-# Demo Video
+# [Demo Video](https://youtu.be/RSnr0aGVvAk)
 
 Quick video to showcase how our project was built and functions!
 
-![Demo Video](./assets/ie421_hft_spring_2025_group_07.mp4)
+https://github.com/user-attachments/assets/de8dadbb-14cd-4fc5-99ce-d3f42125e315
 
 # Contributors
 
