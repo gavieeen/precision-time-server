@@ -1,5 +1,16 @@
 # **PTP/PPS TimeSync Grandmaster using a Raspberry Pi-Based System in Distributed Systems for HFT**
-[[_TOC_]]
+### Table of Contents
+- [Objective](#objective)
+- [Background](#background)
+- [Relevance](#relevance)
+- [Demo Video](#demo-video)
+- [Contributors](#contributors)
+- [Hardware](#hardware)
+- [Software](#software)
+- [Final Report](#final-report)
+- [License](#license)
+- [Project status](#project-status)
+
 # Objective
 
 Our goal is to investigate the feasibility of using the Raspberry Pi CM4 as a GPS Grandmaster Clock. We aim to achieve microsecond-accurate time synchronization using a u-blox GPS module with PPS capabilities. This enables cost-effective timekeeping for applications such as high-frequency trading (HFT), distributed systems, and scientific instrumentation.
