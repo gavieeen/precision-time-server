@@ -4,7 +4,32 @@
 This project aims to build a low-cost, precision time server using a Raspberry Pi CM4, GNSS receiver, and pulse-per-second (PPS) signal integration. The goal is to achieve sub-microsecond synchronization accuracy for time-sensitive applications, such as high-frequency trading (HFT) and distributed systems. By leveraging GPSD, chrony, and Telegraf for metric reporting, and visualizing with Grafana, the system provides live monitoring of satellite lock, jitter, and PTP clock quality.
 Key outcomes include successful PPS signal parsing, live GPS/CPU metric exports, and Prometheus-compatible dashboard panels. The final recommendation is that this architecture is suitable for educational and experimental precision timing, though long-term deployment may benefit from hardware timestamping or grandmaster PTP hardware.
 
-[[_TOC_]]
+### Table of Contents
+- [1. Introduction](#1-introduction)
+- [2. Background](#2-background)
+  - [2.1. One Second](#21-one-second)
+  - [2.2. Clocks and Clock Error](#22-clocks-and-clock-error)
+  - [2.3. Clock Synchronization Protocols](#23-clock-synchronization-protocols)
+  - [2.4. Time Standards and GNSS](#24-time-standards-and-gnss)
+  - [2.5. Oscillators in Timekeeping](#25-oscillators-in-timekeeping)
+  - [2.6. Time in Embedded Systems](#26-time-in-embedded-systems)
+  - [2.7. Quality Metrics for GNSS Time Synchronization](#27-quality-metrics-for-gnss-time-synchronization)
+    - [2.7.1. Satellite Count](#271-satellite-count)
+    - [2.7.2. Satellite Signal Strength (SNR)](#272-satellite-signal-strength-snr)
+    - [2.7.3. Satellite Position (Azimuth/Elevation)](#273-satellite-position-azimuthelevation)
+    - [2.7.4. Lock Status (Fix/No Fix)](#274-lock-status-fixno-fix)
+    - [2.7.5. PPS Offset and Jitter](#275-pps-offset-and-jitter)
+    - [2.7.6. Temperature](#276-temperature)
+    - [2.7.7. CGPS Output](#277-cgps-output)
+    - [2.7.8. Other Offsets and Delays](#278-other-offsets-and-delays)
+- [3. Data and Preprocessing](#3-data-and-preprocessing)
+  - [3.1. Data Examples](#31-data-examples)
+- [4. Methodology](#4-methodology)
+- [5. Implementation](#5-implementation)
+- [6. Results and Analysis](#6-results-and-analysis)
+- [7. Conclusion and Future Work](#7-conclusion-and-future-work)
+- [8. References](#8-references)
+- [9. Reflections](#9-reflections)
 
 ## 1. Introduction
 In the world’s most competitive financial markets, *every millisecond is a race*. Traders and algorithms compete in what is known as the “race to zero”—the relentless quest to reduce trading latency to as close to zero as technology allows. In high-frequency trading (HFT), where thousands of orders are executed in the blink of an eye, victory belongs to those who can act fastest and most precisely. Here, time is not just money—it is the very fabric of fairness, opportunity, and success. Yet, in this environment, speed alone is not enough; it is the precision of time synchronization that determines who truly wins the race.
